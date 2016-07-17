@@ -1,0 +1,32 @@
+{
+  "name": "trump",
+  "version": "1.0.0",
+  "description": "from the Don's mouth",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipemir/trump.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipemir/trump/issues"
+  },
+  "homepage": "https://github.com/filipemir/trump#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.5.4"
+  },
+  "devDependencies": {
+    "jslint": "^0.10.1",
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
+  }
+}
