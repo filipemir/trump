@@ -1,0 +1,8 @@
+{
+  "debug": true,
+  "globals": {
+    "jQuery": true,
+    "console": true,
+    "module": true
+  }
+}

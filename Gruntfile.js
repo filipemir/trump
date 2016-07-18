@@ -11,16 +11,26 @@ module.exports = function(grunt) {
     jshint: {
       files: ['Gruntfile.js', '*.js'],
       options: {
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true
-        }
+        jshintrc: true
       }
     },
     nodemon: {
       dev: {
         script: '<%= pkg.main %>'
+      }
+    },
+    shell: {
+      dropDb: {
+        command: 'mongo trump --eval "db.dropDatabase()"'
+      },
+      seedDb: {
+        command: 'mongoimport -d trump -c quotes --drop trumpisms.json --jsonArray'
+      },
+      initiateDb: {
+        command: 'mongod',
+        options: {
+          async: true
+        }
       }
     },
     watch: {
@@ -33,6 +43,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-shell-spawn');
 
-  grunt.registerTask('default', ['jshint', 'concurrent']);
+  grunt.registerTask('dropDb', ['shell:initiateDb', 'shell:dropDb']);
+  grunt.registerTask('seedDb', ['shell:initiateDb', 'shell:seedDb']);
+  grunt.registerTask('initiateDb', ['shell:initiateDb']);
+  grunt.registerTask('default', ['shell:initiateDb', 'shell:seedDb', 'jshint', 'concurrent']);
 };

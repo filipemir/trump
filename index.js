@@ -1,11 +1,15 @@
 var express = require('express'),
   lodash = require('lodash'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  db = require('./db'),
+  Quote = require('./quotes');
 
 var app = express();
 
 app.get('/', function(req, res, next) {
-  res.send('Shit trump says');
+  Quote.findRandom( function(err, quote) {
+    res.send(quote.text);
+  });
 });
 
 app.listen(3000, function() {
