@@ -4,13 +4,13 @@
     "date": "12/30/15",
     "location": "Campaign rally in Hilton Head Island, South Carolina",
     "sourceurl": "https://youtu.be/7UIE_MRAhEA?t=55s",
-    "audio": ""
+    "audio": "https://s3.amazonaws.com/trump-says/best_words.mp3"
   },
   {
-    "text": "We will have so much winning if I get elected that you may get bored with winning. I agree",
+    "text": "We will have so much winning if I get elected that you may get bored with winning.",
     "date": "9/9/15",
     "location": "Washington, DC",
     "sourceurl": "https://youtu.be/nMQD6FGGBzw?t=2m37s",
-    "audio": ""
+    "audio": "https://s3.amazonaws.com/trump-says/you_will_get_bored_of_winning.mp3"
   }
 ]

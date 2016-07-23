@@ -19,7 +19,8 @@
   "dependencies": {
     "express": "^4.14.0",
     "lodash": "^4.13.1",
-    "mongoose": "^4.5.4"
+    "mongoose": "^4.5.4",
+    "pug": "^2.0.0-beta4"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
