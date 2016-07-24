@@ -15,6 +15,12 @@ app.get('/', function(req, res, next) {
   });
 });
 
+app.get('/trumpism/another-one', function(req, res, next) {
+  Quote.findRandom( function(err, quote) {
+    res.send(quote);
+  });
+});
+
 app.listen(3000, function() {
   console.log('Port 3000 is chugging away!');
 });
