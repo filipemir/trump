@@ -9,9 +9,10 @@ module.exports = function(grunt) {
       tasks: ['nodemon', 'watch']
     },
     jshint: {
-      files: ['Gruntfile.js', '*.js'],
+      files: ['Gruntfile.js', '*.js', 'static/js/*.js' ],
       options: {
-        jshintrc: true
+        jshintrc: true,
+        reporter: require('jshint-stylish')
       }
     },
     nodemon: {
@@ -48,5 +49,5 @@ module.exports = function(grunt) {
   grunt.registerTask('dropDb', ['shell:initiateDb', 'shell:dropDb']);
   grunt.registerTask('seedDb', ['shell:initiateDb', 'shell:seedDb']);
   grunt.registerTask('initiateDb', ['shell:initiateDb']);
-  grunt.registerTask('default', ['shell:initiateDb', 'shell:seedDb', 'jshint', 'concurrent']);
+  grunt.registerTask('default', ['shell:seedDb', 'jshint', 'concurrent']);
 };

@@ -1,7 +1,4 @@
 var express = require('express'),
-  lodash = require('lodash'),
-  mongoose = require('mongoose'),
-  db = require('./db'),
   Quote = require('./quotes');
 
 var app = express();
@@ -9,13 +6,13 @@ var app = express();
 app.set('view engine', 'pug');
 app.use(express.static('static'));
 
-app.get('/', function(req, res, next) {
+app.get('/', function(req, res) {
   Quote.findRandom( function(err, quote) {
     res.render('index', quote);
   });
 });
 
-app.get('/trumpism/another-one', function(req, res, next) {
+app.get('/trumpism/another-one', function(req, res) {
   Quote.findRandom( function(err, quote) {
     res.send(quote);
   });

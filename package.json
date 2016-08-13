@@ -23,12 +23,18 @@
     "pug": "^2.0.0-beta4"
   },
   "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.13.2",
     "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
     "grunt-concurrent": "^2.3.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-nodemon": "^0.4.2",
     "grunt-shell-spawn": "^0.3.10",
-    "jslint": "^0.10.1"
+    "jshint-stylish": "^2.2.1",
+    "jslint": "^0.10.1",
+    "load-grunt-config": "^0.19.2"
   }
 }
