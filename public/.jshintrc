@@ -1,11 +1,12 @@
 {
-  "node": true,
+  "browser": true,
   "maxlen": 120,
   "quotmark": "single",
   "undef": true,
   "unused": true,
   "esversion": 6,
   "globals": {
-    "jQuery": true
+    "jQuery": true,
+    "AudioContext": true
   }
 }

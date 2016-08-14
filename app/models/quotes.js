@@ -1,4 +1,4 @@
-var mongoose = require('./db'),
+var mongoose = require('../db'),
   collectionName = 'quotes';
 
 var quoteSchema = new mongoose.Schema({

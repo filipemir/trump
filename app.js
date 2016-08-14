@@ -1,10 +1,12 @@
 var express = require('express'),
-  Quote = require('./quotes');
+  Quote = require('./app/models/quotes'),
+  paths = require('./paths');
 
 var app = express();
 
 app.set('view engine', 'pug');
-app.use(express.static('static'));
+app.set('views', paths.views);
+app.use(express.static(paths.src.rootDir));
 
 app.get('/', function(req, res) {
   Quote.findRandom( function(err, quote) {

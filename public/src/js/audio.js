@@ -16,7 +16,6 @@ makeRequest({
   method: 'GET',
   path: 'trumpism/another-one', 
   callback: function(response) {
-    console.log(response);
     playAudio(response.audio);
   }
 });
@@ -39,4 +38,3 @@ var playAudio = function(url) {
     }
   });
 };
-
