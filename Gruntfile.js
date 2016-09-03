@@ -1,29 +1,32 @@
-var paths = require('./paths');
+const paths = require('./paths'),
+  timeGrunt = require('time-grunt'),
+  loadGruntConfig = require('load-grunt-config');
 
 module.exports = function(grunt) {
 
-  require('time-grunt')(grunt);
+  timeGrunt(grunt);
 
-  var configs = {};
+  const configs = {};
   configs.project = paths;
-  
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     server: grunt.file.readJSON('package.json').main,
     watchFiles: [
-      '*.js',
+      `*.js`,
       `${paths.appDir}/**/*.js`,
       `${paths.grunt}/**/*.js`,
-      `${paths.public}/**/*.js`
+      `${paths.src.js}/**/*.js`
     ]
   });
 
-  require('load-grunt-config')(grunt, {
+  loadGruntConfig(grunt, {
     configPath: '/Users/filipem/gd/dev/trump/grunt',
     jitGrunt: {
       staticMappings: {
         express: 'grunt-express-server',
-        shell: 'grunt-shell-spawn'
+        shell: 'grunt-shell-spawn',
+        eslint: 'gruntify-eslint'
       }
     }
   });

@@ -1,8 +1,8 @@
-var express = require('express'),
+const express = require('express'),
   Quote = require('./app/models/quotes'),
   paths = require('./paths');
 
-var app = express();
+const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);

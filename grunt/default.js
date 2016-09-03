@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
   grunt.registerTask(
-    'default', 
+    'default',
     function() {
-      grunt.task.run(['shell:seedDb', 'jshint', 'express:dev', 'watch']);
+      grunt.task.run(['shell:seedDb', 'eslint', 'express:dev', 'watch']);
     }
   );
 };

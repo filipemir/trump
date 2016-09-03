@@ -1,7 +1,6 @@
-var mongoose = require('../db'),
-  collectionName = 'quotes';
-
-var quoteSchema = new mongoose.Schema({
+const mongoose = require('../db'),
+  collectionName = 'quotes',
+  quoteSchema = new mongoose.Schema({
     text: String,
     date: Date,
     location: String,
@@ -11,7 +10,7 @@ var quoteSchema = new mongoose.Schema({
 
 quoteSchema.statics.findRandom = function(callback) {
   return this.count(function(err, count) {
-    var rand = Math.floor(Math.random() * count);
+    const rand = Math.floor(Math.random() * count);
     this.findOne().skip(rand).exec(callback);
   }.bind(this));
 };

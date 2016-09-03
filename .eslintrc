@@ -1,0 +1,45 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "arrow-parens": ["error", "always"],
+    "arrow-spacing": "error",
+    "block-scoped-var": "error",
+    "block-spacing": "error",
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+    "comma-spacing": "error",
+    "comma-style": "error",
+    "consistent-return": "error",
+    "constructor-super": "error",
+    "curly": "error",
+    "global-require": "error",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "key-spacing": "error",
+    "keyword-spacing": "error",
+    "max-len": ["error", { "code": 120, "ignoreTrailingComments": true, "ignoreUrls": true }],
+    "new-parens": "error",
+    "no-class-assign": "error",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-eval": "error",
+    "no-trailing-spaces": "error",
+    "no-unneeded-ternary": "error",
+    "no-use-before-define": "error",
+    "no-useless-computed-key": "error",
+    "no-undef": "error",
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-var": "error",
+    "no-whitespace-before-property": "error",
+    "object-curly-spacing": ["error", "always"],
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-template": "error",
+    "template-curly-spacing": "error"
+  }
+}

@@ -1,4 +1,4 @@
-var paths = require('../paths');
+const paths = require('../paths');
 
 module.exports = {
   dropDb: {

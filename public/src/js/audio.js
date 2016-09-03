@@ -1,8 +1,10 @@
-var makeRequest = function(params) {
-  var request = new XMLHttpRequest();
+import $ from 'jquery';
+
+const makeRequest = function(params) {
+  const request = new XMLHttpRequest();
 
   request.open(params.method, params.path, true);
-  request.responseType = params.responseType ? params.responseType : 'json'; 
+  request.responseType = params.responseType ? params.responseType : 'json';
   request.send(null);
 
   request.onload = function() {
@@ -12,25 +14,17 @@ var makeRequest = function(params) {
   };
 };
 
-makeRequest({
-  method: 'GET',
-  path: 'trumpism/another-one', 
-  callback: function(response) {
-    playAudio(response.audio);
-  }
-});
-
-var playAudio = function(url) {
+const playAudio = function(url) {
   makeRequest({
-    method: 'GET', 
+    method: 'GET',
     path: url,
-    responseType: 'arraybuffer', 
+    responseType: 'arraybuffer',
     callback: function(response) {
-      var context = new AudioContext(),
+      const context = new AudioContext(),
         undecodedAudio = response;
 
       context.decodeAudioData(undecodedAudio, function(buffer) {
-        var sourceBuffer = context.createBufferSource();
+        const sourceBuffer = context.createBufferSource();
         sourceBuffer.buffer = buffer;
         sourceBuffer.connect(context.destination);
         sourceBuffer.start(context.currentTime);
@@ -38,3 +32,24 @@ var playAudio = function(url) {
     }
   });
 };
+
+makeRequest({
+  method: 'GET',
+  path: 'trumpism/another-one',
+  callback: function(response) {
+    playAudio(response.audio);
+  }
+});
+
+$('body').on('click', () => {
+  console.log('hello');
+  debugger;
+});
+
+// $('#trumpMe').on('click', makeRequest({
+//   method: 'GET',
+//   path: 'trumpism/another-one',
+//   callback: function(response) {
+//     playAudio(response.audio);
+//   }
+// }));

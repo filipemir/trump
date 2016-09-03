@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  return { 
+  return {
     dev: {
       options: {
         script: grunt.config.get('server'),
