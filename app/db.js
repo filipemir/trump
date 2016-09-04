@@ -10,6 +10,7 @@ mongoose.connect(uristring, function(err) {
   }
 });
 
+// Use the native JS promise class
 mongoose.Promise = global.Promise;
 
 module.exports = mongoose;

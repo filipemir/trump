@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/trumpism/another-one', function(req, res) {
+app.get('/trumpism', function(req, res) {
   // Return a random quote:
   Quote.findRandom().then((quote) => {
     res.json({ quote });

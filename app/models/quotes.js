@@ -5,13 +5,13 @@ const quoteSchema = new mongoose.Schema({
   text: String,
   date: Date,
   location: String,
-  sourceUrl: String,
-  audio: String
+  audioUrl: String,
+  sourceUrl: String
 });
 
 /**
 * Function for retrieving a random quote from the database.
-* Function returns a promise of a  quote object
+* Returns a promise of a quote object
 *
 * @returns {Promise}
 */
