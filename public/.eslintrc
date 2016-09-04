@@ -1,7 +1,10 @@
 {
   "env": {
     "node": false,
-    "browser": true,
+    "browser": true
+  },
+  "rules": {
+    "no-var": "error"
   },
   "parserOptions": {
     "sourceType": "module"

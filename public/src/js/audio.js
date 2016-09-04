@@ -33,17 +33,17 @@ const playAudio = function(url) {
   });
 };
 
-makeRequest({
-  method: 'GET',
-  path: 'trumpism/another-one',
-  callback: function(response) {
-    playAudio(response.audio);
-  }
-});
 
-$('body').on('click', () => {
-  console.log('hello');
-  debugger;
+
+$('#trumpMe').on('click', () => {
+  makeRequest({
+    method: 'GET',
+    path: 'trumpism/another-one',
+    callback: function(response) {
+      debugger;
+      playAudio(response.audio);
+    }
+  });
 });
 
 // $('#trumpMe').on('click', makeRequest({

@@ -24,9 +24,9 @@ module.exports = function(grunt) {
     configPath: '/Users/filipem/gd/dev/trump/grunt',
     jitGrunt: {
       staticMappings: {
+        eslint: 'gruntify-eslint',
         express: 'grunt-express-server',
-        shell: 'grunt-shell-spawn',
-        eslint: 'gruntify-eslint'
+        shell: 'grunt-shell-spawn'
       }
     }
   });

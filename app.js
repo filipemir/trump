@@ -1,3 +1,4 @@
+/* eslint no-console: "off" */
 const express = require('express'),
   Quote = require('./app/models/quotes'),
   paths = require('./paths');
@@ -6,20 +7,21 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
-app.use(express.static(paths.src.rootDir));
+app.use(express.static(paths.dist.rootDir));
 
 app.get('/', function(req, res) {
-  Quote.findRandom( function(err, quote) {
-    res.render('index', quote);
-  });
+  res.render('index');
 });
 
 app.get('/trumpism/another-one', function(req, res) {
-  Quote.findRandom( function(err, quote) {
-    res.send(quote);
+  // Return a random quote:
+  Quote.findRandom().then((quote) => {
+    res.json({ quote });
+  }).catch((error) => {
+    res.status(500).json({ error });
   });
 });
 
 app.listen(3000, function() {
-  console.log('Port 3000 is chugging away!');
+  console.log('Port 3000 is open for visitors');
 });
