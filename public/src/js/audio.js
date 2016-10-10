@@ -23,7 +23,16 @@ const makeRequest = function(params) {
     success: params.callback
   };
   $.ajax(test);
-}
+};
+
+const quotes = [];
+makeRequest({
+  method: 'GET',
+  path: 'trumpism',
+  callback: function(response) {
+    quotes.push(Quote.create(response.quote));
+  }
+});
 
 // const playAudio = function(url) {
 //   makeRequest({
@@ -46,17 +55,23 @@ const makeRequest = function(params) {
 // };
 
 
+// $('#trumpMe').on('click', () => {
+//   makeRequest({
+//     method: 'GET',
+//     path: 'trumpism',
+//     callback: function(response) {
+//       const quote = Quote.create(response.quote);
+//       quote.playQuote();
+//       // playAudio(response.quote.audio);
+//     }
+//   });
+// });
+
 $('#trumpMe').on('click', () => {
-  makeRequest({
-    method: 'GET',
-    path: 'trumpism',
-    callback: function(response) {
-      const quote = new Quote(response.quote);
-      quote.playQuote();
-      debugger;
-      // playAudio(response.quote.audio);
-    }
-  });
+  debugger;
+  const quote = quotes[0];
+
+  quote.playQuote();
 });
 
 // $('#trumpMe').on('click', makeRequest({

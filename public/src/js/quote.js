@@ -2,20 +2,44 @@ import required from './required';
 
 export default class Quote {
 
+  static create(args) {
+    return new Quote(args).setup();
+  }
+
+  /**
+   * Creates a new quote instance
+   *
+   * @constructor
+   * @param {Object} [args]
+   *  @params {String} audioUrl
+   *    URL where audio file stored
+   *  @params {String} text
+   *    Text of quote
+   */
   constructor({ audioUrl = required(), text = required() }) {
     this.audioBinary = null;
     this.audioUrl = audioUrl;
     this.text = text;
   }
 
-  /*
-  * jQuery's AJAX function doesn't work for binary data, so we can't
-  * use it to retrieve mp3 files and have to used the old-fashioned
-  * XMLHttpRequest instead
-  *
-  * @returns
-  */
-  setAudioBinary() {
+  setup() {
+    if (!this.audioBinary) {
+      this._getAudioBinary();
+    }
+
+    return this;
+  }
+
+  /**
+   * Retrieves promise for the audio binary of audio file.
+   *
+   * jQuery's AJAX function doesn't work for binary data, so we can't
+   * use it to retrieve mp3 files and have to used the old-fashioned
+   * XMLHttpRequest instead
+   *
+   * @returns {Promise}
+   */
+  _getAudioBinary() {
     if (this.audioBinary) {
       return this;
     }
@@ -36,20 +60,17 @@ export default class Quote {
       };
     });
 
-    // const audioBinary = promise.then((response) => {
-    //   return response;
-    // }).catch(() => {
-    //   return null;
-    // })
+    promise.then((response) => {
+      this.audioBinary = response;
+    });
 
-    // this.audioBinary = audioBinary;
-
-    return promise;
+    return this;
   }
 
-  playAudioBinary(undecodedAudio) {
+  _playAudioBinary() {
     const context = new AudioContext();
-    context.decodeAudioData(undecodedAudio, function(buffer) {
+
+    context.decodeAudioData(this.audioBinary, function(buffer) {
       const sourceBuffer = context.createBufferSource();
       sourceBuffer.buffer = buffer;
       sourceBuffer.connect(context.destination);
@@ -58,11 +79,10 @@ export default class Quote {
   }
 
   playQuote() {
-    this.setAudioBinary().then((response) => {
-      this.playAudioBinary(response);
-    }).catch((error) => {
-      console.log(error);
-    });
+
+    if (this.audioBinary) {
+      this._playAudioBinary();
+    }
 
     return this;
   }
