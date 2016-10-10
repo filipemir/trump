@@ -10,12 +10,15 @@ const quoteSchema = new mongoose.Schema({
 });
 
 /**
-* Function for retrieving a random quote from the database.
-* Returns a promise of a quote object
+* Function for retrieving random quotes from the database.
+* Returns a promise of an array of quote objects
 *
+* @params {Integer}
+*  Number of quotes request
 * @returns {Promise}
+*  Promise resolves to array
 */
-quoteSchema.statics.findRandom = function() {
+quoteSchema.statics.findRandom = function(num) {
   const quotesModel = this;
 
   // First retrieve a promise for the total number of quotes in the database.
@@ -25,8 +28,9 @@ quoteSchema.statics.findRandom = function() {
   // Once the total number of quotes is returned, grab a random one
   var randomQuote = totalQuotes.then((count) => {
     const randomNum = Math.floor(Math.random() * count);
+    num = num > count ? count : num;
 
-    return this.findOne().skip(randomNum).exec();
+    return this.find().skip(randomNum).limit(num).exec();
   })
 
   return randomQuote;

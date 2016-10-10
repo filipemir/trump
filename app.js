@@ -14,8 +14,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/trumpism', function(req, res) {
+  const num = req.query.num ? parseInt(req.query.num) : '';
+
   // Return a random quote:
-  Quote.findRandom().then((quote) => {
+  Quote.findRandom(num).then((quote) => {
     res.json({ quote });
   }).catch((error) => {
     res.status(500).json({ error });
