@@ -1,9 +1,10 @@
 import required from './required';
+import Audio from './audio';
 
 export default class Quote {
 
   static create(args) {
-    return new Quote(args).setup();
+    return new Quote(args)._setup();
   }
 
   /**
@@ -17,71 +18,28 @@ export default class Quote {
    *    Text of quote
    */
   constructor({ audioUrl = required(), text = required() }) {
-    this.audioBinary = null;
     this.audioUrl = audioUrl;
     this.text = text;
+    this.audio = null;
+    this.played = false;
   }
 
-  setup() {
-    if (!this.audioBinary) {
-      this._getAudioBinary();
+  play() {
+    const audio = this.audio;
+
+    if (audio && audio.ready) {
+      audio.play();
+      this.played = true;
     }
 
     return this;
   }
 
-  /**
-   * Retrieves promise for the audio binary of audio file.
-   *
-   * jQuery's AJAX function doesn't work for binary data, so we can't
-   * use it to retrieve mp3 files and have to used the old-fashioned
-   * XMLHttpRequest instead
-   *
-   * @returns {Promise}
-   */
-  _getAudioBinary() {
-    if (this.audioBinary) {
-      return this;
-    }
+  // --------------------------------------------------------- //
 
-    const promise = new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest();
-
-      request.open('GET', this.audioUrl, true);
-      request.responseType = 'arraybuffer';
-      request.send(null);
-
-      request.onload = function() {
-        if (request.readyState === XMLHttpRequest.DONE) {
-          resolve(request.response);
-        } else {
-          reject('Failed to retrieve audio binary')
-        }
-      };
-    });
-
-    promise.then((response) => {
-      this.audioBinary = response;
-    });
-
-    return this;
-  }
-
-  _playAudioBinary() {
-    const context = new AudioContext();
-
-    context.decodeAudioData(this.audioBinary, function(buffer) {
-      const sourceBuffer = context.createBufferSource();
-      sourceBuffer.buffer = buffer;
-      sourceBuffer.connect(context.destination);
-      sourceBuffer.start(context.currentTime);
-    });
-  }
-
-  playQuote() {
-
-    if (this.audioBinary) {
-      this._playAudioBinary();
+  _setup() {
+    if (!this.audio) {
+      this.audio = Audio.create(this.audioUrl);
     }
 
     return this;

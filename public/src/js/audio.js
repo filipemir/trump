@@ -1,83 +1,83 @@
-import $ from 'jquery';
-import Quote from './quote';
+import required from './required';
 
-// const makeRequest = function(params) {
-//   const request = new XMLHttpRequest();
+export default class Audio {
 
-//   request.open(params.method, params.path, true);
-//   request.responseType = params.responseType ? params.responseType : 'json';
-//   request.send(null);
-
-//   request.onload = function() {
-//     if (request.readyState === XMLHttpRequest.DONE) {
-//       params.callback(request.response);
-//     }
-//   };
-// };
-
-const makeRequest = function(params) {
-  const test = {
-    url: params.path,
-    type: 'GET',
-    dataType: params.responseType || 'json',
-    success: params.callback
-  };
-  $.ajax(test);
-};
-
-const quotes = [];
-makeRequest({
-  method: 'GET',
-  path: 'trumpism',
-  callback: function(response) {
-    quotes.push(Quote.create(response.quote));
+  static create(url) {
+    return new Audio(url)._setup();
   }
-});
 
-// const playAudio = function(url) {
-//   makeRequest({
-//     method: 'GET',
-//     path: url,
-//     responseType: 'arraybuffer',
-//     callback: function(response) {
-//       // const context = new AudioContext(),
-//       //   undecodedAudio = response;
+  /**
+   * Creates a new quote instance
+   *
+   * @constructor
+   * @param {Object} [args]
+   *  @params {String} audioUrl
+   *    URL where audio file stored
+   *  @params {String} text
+   *    Text of quote
+   */
+  constructor(url = required()) {
+    this.url = url;
+    this.ready = false;
+    this._binary = null;
+  }
 
+  play() {
+    const context = new AudioContext();
 
-//       // context.decodeAudioData(undecodedAudio, function(buffer) {
-//       //   const sourceBuffer = context.createBufferSource();
-//       //   sourceBuffer.buffer = buffer;
-//       //   sourceBuffer.connect(context.destination);
-//       //   sourceBuffer.start(context.currentTime);
-//       // });
-//     }
-//   });
-// };
+    context.decodeAudioData(this._binary, function(buffer) {
+      const sourceBuffer = context.createBufferSource();
+      sourceBuffer.buffer = buffer;
+      sourceBuffer.connect(context.destination);
+      sourceBuffer.start(context.currentTime);
+    });
+  }
 
+  // --------------------------------------------------------- //
 
-// $('#trumpMe').on('click', () => {
-//   makeRequest({
-//     method: 'GET',
-//     path: 'trumpism',
-//     callback: function(response) {
-//       const quote = Quote.create(response.quote);
-//       quote.playQuote();
-//       // playAudio(response.quote.audio);
-//     }
-//   });
-// });
+  /**
+   * Retrieves promise for the audio binary of audio file.
+   *
+   * jQuery's AJAX function doesn't work for binary data, so we can't
+   * use it to retrieve mp3 files and have to used the old-fashioned
+   * XMLHttpRequest instead
+   *
+   * @returns {Promise}
+   */
+  _getBinary() {
+    if (this._binary) {
+      return this;
+    }
 
-$('#trumpMe').on('click', () => {
-  debugger;
-  const quote = quotes[0];
+    const promise = new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
 
-  quote.playQuote();
-});
+      request.open('GET', this.url, true);
+      request.responseType = 'arraybuffer';
+      request.send(null);
 
-// $('#trumpMe').on('click', makeRequest({
-//   method: 'GET',
-//   path: 'trumpism/another-one',
-//   callback: function(response) {
-//     playAudio(response.audio);
-//   }
-// }));
+      request.onload = function() {
+        if (request.readyState === XMLHttpRequest.DONE) {
+          resolve(request.response);
+        } else {
+          reject('Failed to retrieve audio binary')
+        }
+      };
+    });
+
+    promise.then((response) => {
+      this._binary = response;
+      this.ready = true;
+    });
+
+    return this;
+  }
+
+  _setup() {
+    if (!this._binary) {
+      this._getBinary();
+    }
+
+    return this;
+  }
+}

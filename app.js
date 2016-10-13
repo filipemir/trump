@@ -18,7 +18,7 @@ app.get('/trumpism', function(req, res) {
 
   // Return a random quote:
   Quote.findRandom(num).then((quote) => {
-    res.json({ quote });
+    res.json(quote);
   }).catch((error) => {
     res.status(500).json({ error });
   });
