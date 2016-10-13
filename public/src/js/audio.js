@@ -7,14 +7,11 @@ export default class Audio {
   }
 
   /**
-   * Creates a new quote instance
+   * Creates a new Audio instance
    *
    * @constructor
-   * @param {Object} [args]
-   *  @params {String} audioUrl
-   *    URL where audio file stored
-   *  @params {String} text
-   *    Text of quote
+   * @param {String} [url]
+   *  URL where audio file stored
    */
   constructor(url = required()) {
     this.url = url;
