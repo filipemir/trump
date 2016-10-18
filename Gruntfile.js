@@ -21,7 +21,7 @@ module.exports = function(grunt) {
   });
 
   loadGruntConfig(grunt, {
-    configPath: '/Users/filipem/gd/dev/trump/grunt',
+    configPath: `${paths.grunt}`,
     jitGrunt: {
       staticMappings: {
         eslint: 'gruntify-eslint',
