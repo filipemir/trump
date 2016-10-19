@@ -1,5 +1,7 @@
 import required from './required';
 
+const audioContext = new AudioContext();
+
 export default class Audio {
 
   static create(url) {
@@ -17,17 +19,27 @@ export default class Audio {
     this.url = url;
     this.ready = false;
     this._binary = null;
+    this._bufferSource = null;
   }
 
   play() {
-    const context = new AudioContext();
+    const source = this._bufferSource;
 
-    context.decodeAudioData(this._binary, function(buffer) {
-      const sourceBuffer = context.createBufferSource();
-      sourceBuffer.buffer = buffer;
-      sourceBuffer.connect(context.destination);
-      sourceBuffer.start(context.currentTime);
-    });
+    if (this.ready) {
+      source.start();
+    }
+
+    return this;
+  }
+
+  stopPlaying() {
+    const source = this._bufferSource;
+
+    if (this.ready) {
+      source.stop();
+    }
+
+    return this;
   }
 
   // --------------------------------------------------------- //
@@ -63,14 +75,29 @@ export default class Audio {
     });
 
     promise.then((response) => {
-      this._binary = response;
-      this.ready = true;
+      this._decodeBinary(response);
     });
 
     return this;
   }
 
+  _decodeBinary(binary) {
+    const source = this._bufferSource;
+
+    this._binary = binary;
+
+    audioContext.decodeAudioData(binary).then((buffer) => {
+      source.buffer = buffer;
+      source.connect(audioContext.destination);
+      this.ready = true;
+    });
+  }
+
   _setup() {
+    if (!this._bufferSource) {
+      this._bufferSource = audioContext.createBufferSource();
+    }
+
     if (!this._binary) {
       this._getBinary();
     }

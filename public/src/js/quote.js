@@ -2,7 +2,9 @@ import required from './required';
 import Audio from './audio';
 
 export default class Quote {
-
+  /**
+   * Static class method to create and initialize a new instance
+   */
   static create(args) {
     return new Quote(args)._setup();
   }
@@ -24,6 +26,11 @@ export default class Quote {
     this.played = false;
   }
 
+  /**
+   * Plays audio of quote
+   *
+   * @chainable
+   */
   play() {
     const audio = this.audio;
 
@@ -35,8 +42,28 @@ export default class Quote {
     return this;
   }
 
+  /**
+   * Stops the playing of the audio of quote
+   *
+   * @chainable
+   */
+  stopPlaying() {
+    const audio = this.audio;
+
+    if (audio && audio.ready) {
+      audio.stop();
+    }
+
+    return this;
+  }
+
   // --------------------------------------------------------- //
 
+  /**
+   * Starts the initialization of a quote by creating its audio
+   *
+   * @chainable
+   */
   _setup() {
     if (!this.audio) {
       this.audio = Audio.create(this.audioUrl);
