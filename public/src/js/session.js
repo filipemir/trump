@@ -27,7 +27,7 @@ export default class Session {
    *
    * @chainable
    */
-  playAQuote() {
+  playPresentQuote() {
     if (!this._presentQuote) {
       this._loadQuote();
     }
@@ -35,12 +35,23 @@ export default class Session {
     if (this._presentQuote) {
       if (this._presentQuote.played) {
         this._presentQuote.stopPlaying();
-        this._loadQuote()
+        this._loadQuote();
       }
       this._presentQuote.play();
     }
 
     return this;
+  }
+
+  displayPresentQuoteText() {
+    $('#quoteText').text(this._presentQuote.text);
+
+    return this
+  }
+
+  newQuote() {
+    this.playPresentQuote();
+    this.displayPresentQuoteText();
   }
 
   // --------------------------------------------------------- //

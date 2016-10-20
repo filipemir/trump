@@ -51,7 +51,7 @@ export default class Quote {
     const audio = this.audio;
 
     if (audio && audio.ready) {
-      audio.stop();
+      audio.stopPlaying();
     }
 
     return this;
