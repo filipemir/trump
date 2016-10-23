@@ -16,7 +16,8 @@ module.exports = function(grunt) {
       `*.js`,
       `${paths.appDir}/**/*.js`,
       `${paths.grunt}/**/*.js`,
-      `${paths.src.js}/**/*.js`
+      `${paths.src.js}/**/*.js`,
+      `${paths.src.css}/**/*.css`,
     ]
   });
 
