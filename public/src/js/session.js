@@ -43,7 +43,7 @@ export default class Session {
     return this;
   }
 
-  displayPresentQuoteText() {
+  displayPresentQuote() {
     $('#quoteText').text(this._presentQuote.text);
 
     return this
@@ -51,7 +51,7 @@ export default class Session {
 
   newQuote() {
     this.playPresentQuote();
-    this.displayPresentQuoteText();
+    this.displayPresentQuote();
   }
 
   // --------------------------------------------------------- //
