@@ -1,3 +1,65 @@
 body {
-    background: red;
+  background: url(/img/trump.jpg);
+  background-size: cover;
+  background-position: center center;
+
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
+}
+
+#quoteBox {
+  width:  100%;
+}
+
+#quoteText {
+  color: #d3d3d3;
+  letter-spacing: 9px;
+  text-align: center;
+  display: block;
+  width: 70%;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  max-width:  1200px;
+
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -o-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+}
+
+#quoteText span {
+  margin-right: 10px;
+  margin-left:  10px;
+  display:  inline-block;
+  transition:  all 1s;
+}
+
+#quoteText.intro span {
+  -moz-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.button {
+  letter-spacing: 0px;
+  padding: 0.75em 2em;
+  text-align:  center;
+  text-decoration: none;
+  border-radius:  40px;
+  border: dotted 3px #d3d3d3;
+  color: #d3d3d3;
+  display:  block;
+  position:  absolute;
+  width: 200px;
+  height: 30px;
+  bottom:  70px;
+  left:  50%;
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
 }

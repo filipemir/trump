@@ -44,7 +44,26 @@ export default class Session {
   }
 
   displayPresentQuote() {
-    $('#quoteText').text(this._presentQuote.text);
+    const text = this._presentQuote.text,
+      words = text.split(' '),
+      wordCount = words.length,
+      quoteElement = $('#quoteText');
+
+    quoteElement.empty();
+
+    quoteElement.toggleClass('intro');
+
+    for (let i = 0; i < wordCount; i++) {
+      const word = words[i],
+        delay = i * 1/wordCount,
+        html = `<span style="transition-delay: ${delay}s;">${word}</span>`;
+
+      quoteElement.append(html);
+    }
+
+    setTimeout(() => {
+      quoteElement.toggleClass('intro');
+    }, 100);
 
     return this
   }
