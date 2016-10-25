@@ -18,7 +18,7 @@ body {
   display: block;
   width: 70%;
   margin: 0;
-  top: 50%;
+  top: 45%;
   left: 50%;
   max-width:  1200px;
 
@@ -46,20 +46,28 @@ body {
 
 .button {
   letter-spacing: 0px;
-  padding: 0.75em 2em;
+  // padding: 0.75em 2em;
   text-align:  center;
   text-decoration: none;
   border-radius:  40px;
-  border: dotted 3px #d3d3d3;
+  // border: dotted 3px #d3d3d3;
   color: #d3d3d3;
   display:  block;
   position:  absolute;
-  width: 200px;
-  height: 30px;
-  bottom:  70px;
+  width: 400px;
+  // height: 30px;
+  bottom:  50px;
   left:  50%;
   -moz-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+#btn {
+  height: 30px;
 }
