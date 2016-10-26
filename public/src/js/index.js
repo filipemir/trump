@@ -3,7 +3,7 @@ import Session from './session';
 
 const session = Session.create();
 
-$('#trumpMe').on('click', () => {
+$('#banner').on('click', () => {
   session.newQuote();
 });
 

@@ -44,30 +44,29 @@ body {
   opacity: 0;
 }
 
-.button {
-  letter-spacing: 0px;
-  // padding: 0.75em 2em;
-  text-align:  center;
-  text-decoration: none;
-  border-radius:  40px;
-  // border: dotted 3px #d3d3d3;
-  color: #d3d3d3;
+#banner {
   display:  block;
   position:  absolute;
   width: 400px;
-  // height: 30px;
-  bottom:  50px;
+  bottom:  30px;
   left:  50%;
   -moz-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
+  fill: #d3d3d3;
+  transition:  all 0.4s;
 }
 
-.button:hover {
+#banner:hover {
   cursor: pointer;
 }
 
-#btn {
-  height: 30px;
+#face {
+  fill: #d3d3d3;
+  transition:  all 0.3s;
+}
+
+#banner:hover #face {
+  fill: #FF9900;
 }
