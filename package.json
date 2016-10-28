@@ -1,10 +1,14 @@
 {
-  "name": "trump",
+  "name": "the-best-words",
   "version": "1.0.0",
-  "description": "from the Don's mouth",
+  "description": "Shit Trump Says",
+  "version": "1.0.0",
+  "engines": {
+    "node": "4.4.7"
+  },
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "grunt"
   },
   "repository": {
     "type": "git",
