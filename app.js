@@ -1,13 +1,15 @@
 /* eslint no-console: "off" */
 const express = require('express'),
   Quote = require('./app/models/quotes'),
-  paths = require('./paths');
+  paths = require('./paths'),
+  favicon = require('serve-favicon');
 
 const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
 app.use(express.static(paths.dist.rootDir));
+app.use(favicon(`${paths.src.img}/face.png`));
 
 app.get('/', function(req, res) {
   res.render('index');
