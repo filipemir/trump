@@ -55,18 +55,27 @@ body {
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
   fill: #d3d3d3;
-  transition:  all 0.4s;
+}
+
+#face, #hair, #words {
+  fill: #d3d3d3;
+  transition:  all 0.3s;
+}
+
+#face, #hair, #words {
+  fill: #d3d3d3;
+  transition:  all 0.3s;
 }
 
 #banner:hover {
   cursor: pointer;
 }
 
-#face {
-  fill: #d3d3d3;
-  transition:  all 0.3s;
+#banner:hover #face {
+  fill:  #dd9d3e;
 }
 
-#banner:hover #face {
-  fill: #FF9900;
+#banner:hover #hair,
+#banner:hover #words {
+  fill:  #f9ffc4;
 }
