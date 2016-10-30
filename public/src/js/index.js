@@ -3,6 +3,11 @@ import Session from './session';
 
 const session = Session.create();
 
+$('#background-image-holder').ready(() => {
+  $('#curtain').css('opacity', '0');
+  session.displayOpeningText();
+})
+
 $('#banner').on('click', () => {
   session.newQuote();
 });

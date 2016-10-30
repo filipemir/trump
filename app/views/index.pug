@@ -4,8 +4,10 @@ head
   link(rel="stylesheet", type="text/css", href="css/index.min.css")
   link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Amatic+SC")
 body
+  div(id="curtain")
+  img(id="background-image-holder", src="http://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg", style="display: none;")
   div(id="quoteBox")
-    h1(id="quoteText")='Shit Trump Says'
+    h1(id="quoteText")
   div(id="banner")
     include img/banner.svg
   script(src="js/trump.js")

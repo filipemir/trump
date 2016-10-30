@@ -43,9 +43,8 @@ export default class Session {
     return this;
   }
 
-  displayPresentQuote() {
-    const text = this._presentQuote.text,
-      words = text.split(' '),
+  displayQuote(text) {
+    const words = text.split(' '),
       wordCount = words.length,
       quoteElement = $('#quoteText');
 
@@ -68,9 +67,13 @@ export default class Session {
     return this
   }
 
+  displayOpeningText() {
+    this.displayQuote('Shit Trump Says');
+  }
+
   newQuote() {
     this.playPresentQuote();
-    this.displayPresentQuote();
+    this.displayQuote(this._presentQuote.text);
   }
 
   // --------------------------------------------------------- //
