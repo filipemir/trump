@@ -18,5 +18,8 @@ module.exports = {
     css: path.join(__dirname, 'public/src/css'),
     img: path.join(__dirname, 'public/src/img')
   },
-  views: path.join(__dirname, '/app/views')
+  views: path.join(__dirname, '/app/views'),
+  s3: {
+    root: 's3.amazonaws.com/trump-says/'
+  }
 };
