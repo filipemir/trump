@@ -10,7 +10,9 @@ module.exports = function(grunt) {
   timeGrunt(grunt);
 
   const pkg = grunt.file.readJSON('package.json'),
-    dbConfig = config.db[process.env.NODE_ENV],
+    envOption = _.includes(['development', 'production'], grunt.option('env')) ? grunt.option('env') : null,
+    env = envOption || process.env.NODE_ENV || 'development',
+    dbConfig = config.db[env],
     mongoUser = dbConfig.user ? `-u  ${dbConfig.user}`: '',
     mongoPw = dbConfig.pw ? `-p  ${dbConfig.pw}`: '',
     mongoCredentials = [mongoUser, mongoPw].join(' '),
