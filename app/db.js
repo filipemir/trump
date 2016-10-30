@@ -1,6 +1,7 @@
 /* eslint no-console: "off" */
-const mongoose = require('mongoose'),
-  uristring = 'mongodb://localhost/trump';
+const config = require('./config.js'),
+  mongoose = require('mongoose'),
+  uristring = config.db[process.env.NODE_ENV];
 
 mongoose.connect(uristring, function(err) {
   if (err) {

@@ -1,10 +1,11 @@
 /* eslint no-console: "off" */
+require('dotenv').config();
+
 const express = require('express'),
+  favicon = require('serve-favicon'),
   Quote = require('./models/quotes'),
   paths = require('../paths'),
-  favicon = require('serve-favicon');
-
-const app = express();
+  app = express();
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);

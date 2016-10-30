@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const _ = require('lodash'),
   paths = require('./paths'),
   timeGrunt = require('time-grunt');
@@ -57,6 +59,9 @@ module.exports = function(grunt) {
     },
 
     shell: {
+      connectDb: {
+        command: `mongo ds139267.mlab.com:39267/the-best-words -u ${process.env.DB_USER} -p ${process.env.DB_PASSWORD}`
+      },
       dropDb: {
         command: 'mongo trump --eval "db.dropDatabase()"'
       },
