@@ -1,13 +1,15 @@
 const mongoose = require('../db'),
-  collectionName = 'quotes';
+  config = require('../config');
 
-const quoteSchema = new mongoose.Schema({
-  text: String,
-  date: Date,
-  location: String,
-  audioUrl: String,
-  sourceUrl: String
-});
+const dbConfig = config.db[process.env.NODE_ENV],
+  collectionName = dbConfig.collection,
+  quoteSchema = new mongoose.Schema({
+    text: String,
+    date: Date,
+    location: String,
+    audioUrl: String,
+    sourceUrl: String
+  });
 
 /**
 * Function for retrieving random quotes from the database.

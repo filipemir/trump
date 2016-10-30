@@ -1,9 +1,21 @@
-const DB_USER = process.env.DB_USER,
-  DB_PASSWORD = process.env.DB_PASSWORD;
+const paths = require('../paths');
 
 module.exports = {
   db: {
-    production: `mongodb://${DB_USER}:${DB_PASSWORD}@ds139267.mlab.com:39267/the-best-words`,
-    development: 'mongodb://localhost/trump',
+    seeder: `${paths.appDir}/trumpisms.json`,
+    production: {
+      location: process.env.DB_LOCATION,
+      URI: `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_LOCATION}/the-best-words`,
+      db: 'the-best-words',
+      collection: 'quotes',
+      user: process.env.DB_USER,
+      pw: process.env.DB_PASSWORD
+    },
+    development: {
+      location: 'localhost',
+      URI: 'mongodb://localhost/the-best-words',
+      db: 'the-best-words',
+      collection: 'quotes',
+    }
   }
 };

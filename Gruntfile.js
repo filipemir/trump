@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const _ = require('lodash'),
   paths = require('./paths'),
+  config = require('./app/config'),
   timeGrunt = require('time-grunt');
 
 module.exports = function(grunt) {
@@ -9,6 +10,10 @@ module.exports = function(grunt) {
   timeGrunt(grunt);
 
   const pkg = grunt.file.readJSON('package.json'),
+    dbConfig = config.db[process.env.NODE_ENV],
+    mongoUser = dbConfig.user ? `-u  ${dbConfig.user}`: '',
+    mongoPw = dbConfig.pw ? `-p  ${dbConfig.pw}`: '',
+    mongoCredentials = [mongoUser, mongoPw].join(' '),
     server = grunt.file.readJSON('package.json').main,
     watchFiles = [
       `${paths.appDir}/**/*.js`,
@@ -59,14 +64,11 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      connectDb: {
-        command: `mongo ds139267.mlab.com:39267/the-best-words -u ${process.env.DB_USER} -p ${process.env.DB_PASSWORD}`
-      },
       dropDb: {
-        command: 'mongo trump --eval "db.dropDatabase()"'
+        command: `mongo ${dbConfig.location}/${dbConfig.db} ${mongoCredentials} --eval "db.dropDatabase()"`
       },
       seedDb: {
-        command: `mongoimport -d trump -c quotes --drop ${paths.appDir}/trumpisms.json --jsonArray`
+        command: `mongoimport -h ${dbConfig.location} -d ${dbConfig.db} -c ${dbConfig.collection} ${mongoCredentials} --file ${config.db.seeder} --jsonArray`
       }
     },
 
@@ -112,17 +114,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-webpack');
 
-  grunt.registerTask(
-    'develop', ['eslint', 'clean', 'webpack', 'cssmin', 'copy', 'express', 'watch']
-  );
+  grunt.registerTask('develop', ['eslint', 'clean', 'webpack', 'cssmin', 'copy', 'express', 'watch']);
   grunt.registerTask('default', 'develop');
   grunt.registerTask('db-seed', 'shell:seedDb');
   grunt.registerTask('db-drop', 'shell:dropDb');
-  grunt.registerTask(
-    'build',
-    "Concatenates and stacks the page's javascript code",
-    function() {
-      grunt.task.run(['clean', 'webpack', 'uglify', 'cssmin', 'copy']);
-    }
-  );
+  grunt.registerTask('build', ['clean', 'webpack', 'uglify', 'cssmin', 'copy']);
 };

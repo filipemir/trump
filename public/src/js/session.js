@@ -38,6 +38,7 @@ export default class Session {
         this._loadQuote();
       }
       this._presentQuote.play();
+      this.displayQuote(this._presentQuote.text);
     }
 
     return this;
@@ -73,7 +74,6 @@ export default class Session {
 
   newQuote() {
     this.playPresentQuote();
-    this.displayQuote(this._presentQuote.text);
   }
 
   // --------------------------------------------------------- //
@@ -104,7 +104,9 @@ export default class Session {
    * @chainable
    */
   _loadQuote() {
-    this._presentQuote = this._quoteStash.shift();
+    if (this._quoteStash && this._quoteStash.length > 0) {
+      this._presentQuote = this._quoteStash.shift();
+    }
     this._getQuotes(1);
 
     return this;
@@ -133,7 +135,7 @@ export default class Session {
 
   /**
    * Starts the intialization of a session by making the request for
-   * quotes and initiatilizing the stash
+   * quotes and initializing the stash
    *
    * @chainable
    */

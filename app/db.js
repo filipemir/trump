@@ -1,13 +1,15 @@
 /* eslint no-console: "off" */
 const config = require('./config.js'),
-  mongoose = require('mongoose'),
-  uristring = config.db[process.env.NODE_ENV];
+  mongoose = require('mongoose');
 
-mongoose.connect(uristring, function(err) {
+const dbConfigs = config.db[process.env.NODE_ENV],
+  URI = dbConfigs.URI;
+
+mongoose.connect(URI, function(err) {
   if (err) {
-    console.log (`ERROR connecting to: ${uristring}. ${err}`);
+    console.log (`ERROR connecting to: ${URI}. ${err}`);
   } else {
-    console.log (`Succeeded connecting to: ${uristring}`);
+    console.log (`Succeeded connecting to: ${URI}`);
   }
 });
 
