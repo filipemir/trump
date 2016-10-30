@@ -22,8 +22,8 @@ body {
 }
 
 #quoteText {
-  /* color: #d3d3d3; */
-  color: #fff;
+  color: #d3d3d3;
+  color: #d3d3d3;
   letter-spacing: 9px;
   text-align: center;
   display: block;
@@ -65,16 +65,16 @@ body {
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
-  fill: #fff;
+  fill: #d3d3d3;
 }
 
 #face, #hair, #words {
-  fill: #fff;
+  fill: #d3d3d3;
   transition:  all 0.3s;
 }
 
 #face, #hair, #dots {
-  fill: #fff;
+  fill: #d3d3d3;
   transition:  all 0.3s;
 }
 
