@@ -1,7 +1,7 @@
 /* eslint no-console: "off" */
 const express = require('express'),
-  Quote = require('./app/models/quotes'),
-  paths = require('./paths'),
+  Quote = require('./models/quotes'),
+  paths = require('../paths'),
   favicon = require('serve-favicon');
 
 const app = express();

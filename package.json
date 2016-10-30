@@ -6,9 +6,9 @@
   "engines": {
     "node": "4.4.7"
   },
-  "main": "app.js",
+  "main": "app/index.js",
   "scripts": {
-    "start": "grunt"
+    "start": "node app/index.js"
   },
   "repository": {
     "type": "git",
@@ -34,19 +34,18 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-eslint": "0.0.5",
     "grunt-contrib-uglify": "^2.0.0",
+    "grunt-webpack": "^1.0.14",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-eslint": "0.0.5",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^19.0.0",
     "grunt-express-server": "^0.5.3",
     "grunt-shell-spawn": "^0.3.10",
-    "grunt-webpack": "^1.0.14",
     "gruntify-eslint": "^3.1.0",
-    "jit-grunt": "^0.10.0",
-    "jshint-stylish": "^2.2.1",
-    "load-grunt-config": "^0.19.2",
-    "time-grunt": "^1.4.0",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.1"
+    "time-grunt": "^1.4.0"
   }
 }

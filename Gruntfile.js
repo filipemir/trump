@@ -108,17 +108,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-webpack');
 
   grunt.registerTask(
-    'develop',
-    function() {
-      grunt.task.run(['shell:seedDb', 'eslint', 'clean', 'webpack', 'cssmin', 'copy', 'express', 'watch']);
-    }
+    'develop', ['eslint', 'clean', 'webpack', 'cssmin', 'copy', 'express', 'watch']
   );
-  grunt.registerTask('default', ['develop']);
+  grunt.registerTask('default', 'develop');
+  grunt.registerTask('db-seed', 'shell:seedDb');
+  grunt.registerTask('db-drop', 'shell:dropDb');
   grunt.registerTask(
     'build',
     "Concatenates and stacks the page's javascript code",
     function() {
-      grunt.task.run(['eslint', 'clean', 'webpack', 'uglify', 'cssmin', 'copy']);
+      grunt.task.run(['clean', 'webpack', 'uglify', 'cssmin', 'copy']);
     }
   );
 };
