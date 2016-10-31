@@ -3,7 +3,7 @@ import Session from './session';
 
 const session = Session.create();
 
-$('#background-image-holder').ready(() => {
+$('#background-image-holder').on("load", () => {
   $('#curtain').css('opacity', '0');
   session.displayOpeningText();
 })
