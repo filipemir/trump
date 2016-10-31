@@ -7,7 +7,8 @@ const express = require('express'),
   favicon = require('serve-favicon'),
   Quote = require('./models/quotes'),
   paths = require('../paths'),
-  app = express();
+  app = express(),
+  port = process.env.PORT || 3000;
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
@@ -29,6 +30,6 @@ app.get('/trumpism', function(req, res) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('Port 3000 is open for visitors');
+app.listen(port, function() {
+  console.log(`Port ${port} is open for visitors`);
 });
