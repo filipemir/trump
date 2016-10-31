@@ -57,6 +57,7 @@ body {
   transform: translateX(-50%);
   fill: #d3d3d3;
   z-index:  3;
+  cursor:  pointer;
 }
 
 #face, #hair, #words {
@@ -67,10 +68,6 @@ body {
 #face, #hair, #dots {
   fill: #d3d3d3;
   transition:  all 0.3s;
-}
-
-#banner:hover {
-  cursor: pointer;
 }
 
 #banner:hover #face {
