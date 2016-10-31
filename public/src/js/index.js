@@ -6,8 +6,14 @@ session.displayOpeningText();
 
 const banner = document.getElementById('banner');
 
-banner.addEventListener('keydown', () => {
+banner.addEventListener('mousedown', () => {
   session.newQuote();
+})
+
+window.addEventListener('keydown', (event) => {
+  if (event.keyCode == 32) {
+    session.newQuote();
+  }
 })
 
 
