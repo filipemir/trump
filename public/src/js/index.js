@@ -5,7 +5,7 @@ const session = Session.create();
 
 session.displayOpeningText();
 
-$('#banner').on('click', () => {
+$('#banner').on('mousedown keydown touchstart', () => {
   session.newQuote();
 });
 
