@@ -7,19 +7,6 @@ body {
   font-size: 40px;
 }
 
-#curtain {
-  background-color:  black;
-  position:  fixed;
-  left:  0;
-  top:  0;
-  width:  100%;
-  height:  100%;
-  transition:  all 2s;
-  opacity:  1;
-  visibility:  visible;
-  z-index:  -1;
-}
-
 #quoteBox {
   width:  100%;
 }
@@ -89,10 +76,6 @@ body {
 #banner:hover #face {
   fill:  #dd9d3e;
 }
-
-/* #banner:hover #hair {
-  fill:  #f9ffc4;
-} */
 
 #banner:hover #dots {
   fill:  #dd9d3e;
