@@ -46,6 +46,9 @@ body {
 }
 
 #banner {
+  outline:  0;
+  background:  transparent;
+  border:  none;
   display:  block;
   position:  absolute;
   width: 400px;
