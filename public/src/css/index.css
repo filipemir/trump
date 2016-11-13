@@ -1,7 +1,12 @@
 body {
   background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
 
   font-family: 'Amatic SC', cursive;
   font-size: 40px;

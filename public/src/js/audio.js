@@ -1,6 +1,5 @@
 import required from './required';
-
-const audioContext = new AudioContext();
+import audioContext from './audio-context';
 
 export default class Audio {
 
@@ -26,7 +25,11 @@ export default class Audio {
     const source = this._bufferSource;
 
     if (this.ready) {
-      source.start();
+      if (audioContext && audioContext._implementation_ === "webkit") {
+        source.noteOn(0);
+      } else {
+        source.start();
+      }
     }
 
     return this;
@@ -36,11 +39,16 @@ export default class Audio {
     const source = this._bufferSource;
 
     if (this.ready) {
-      source.stop();
+      if (audioContext && audioContext._implementation_ === "webkit") {
+        source.noteOff(0);
+      } else {
+        source.stop();
+      }
     }
 
     return this;
   }
+
 
   // --------------------------------------------------------- //
 
@@ -81,20 +89,31 @@ export default class Audio {
     return this;
   }
 
-  _decodeBinary(binary) {
+  _connectAudioSource(decodedBuffer) {
     const source = this._bufferSource;
 
+    source.buffer = decodedBuffer;
+    source.connect(audioContext.destination);
+    this.ready = true;
+  }
+
+  _decodeBinary(binary) {
     this._binary = binary;
 
-    audioContext.decodeAudioData(binary).then((buffer) => {
-      source.buffer = buffer;
-      source.connect(audioContext.destination);
-      this.ready = true;
-    });
+    if (audioContext) {
+      if (audioContext._implementation_ === "webkit") {
+        const decodedBuffer = audioContext.createBuffer(binary, false);
+        this._connectAudioSource(decodedBuffer);
+      } else {
+        audioContext.decodeAudioData(binary).then((decodedBuffer) => {
+          this._connectAudioSource(decodedBuffer);
+        });
+      }
+    }
   }
 
   _setup() {
-    if (!this._bufferSource) {
+    if (audioContext && !this._bufferSource) {
       this._bufferSource = audioContext.createBufferSource();
     }
 

@@ -1,16 +1,16 @@
 import Session from './session';
+import $ from 'jquery';
 
 const session = Session.create();
 
 session.displayOpeningText();
 
-const banner = document.getElementById('banner');
 
-banner.addEventListener('mousedown', () => {
+$('#banner').on('click touchend', () => {
   session.newQuote();
 })
 
-window.addEventListener('keydown', (event) => {
+$(window).on('keydown', (event) => {
   if (event.keyCode == 32) {
     session.newQuote();
   }
