@@ -7,6 +7,18 @@ export default class Audio {
     return new Audio(url)._setup();
   }
 
+  static unmute() {
+    const buffer = audioContext.createBuffer(1, 1, 22050),
+      source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    if (audioContext && audioContext._implementation_ === "webkit") {
+      source.noteOn(0);
+    } else {
+      source.start();
+    }
+  }
+
   /**
    * Creates a new Audio instance
    *
