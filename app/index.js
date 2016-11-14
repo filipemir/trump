@@ -9,7 +9,7 @@ const express = require('express'),
   paths = require('../paths'),
   app = express(),
   port = process.env.PORT || 3000,
-  hostName = process.env.NODE_ENV === 'development' ? 'localhost' : 'the-best-words.herokuapp.com';
+  hostName = process.env.NODE_ENV === 'development' ? 'localhost' : undefined;
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
