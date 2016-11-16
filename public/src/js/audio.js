@@ -37,10 +37,10 @@ export default class Audio {
     const source = this._bufferSource;
 
     if (this.ready) {
-      if (audioContext && audioContext._implementation_ === "webkit") {
-        source.noteOn(0);
-      } else {
+      if (audioContext && source.start) {
         source.start();
+      } else {
+        source.noteOn(0);
       }
     }
 
@@ -51,10 +51,10 @@ export default class Audio {
     const source = this._bufferSource;
 
     if (this.ready) {
-      if (audioContext && audioContext._implementation_ === "webkit") {
-        source.noteOff(0);
-      } else {
+      if (audioContext && source.stop) {
         source.stop();
+      } else {
+        source.noteOff(0);
       }
     }
 
