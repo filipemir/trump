@@ -34,7 +34,7 @@ export default class Session {
 
     if (this._presentQuote) {
       if (this._presentQuote.played) {
-        this._presentQuote.stopPlaying();
+        // this._presentQuote.stopPlaying();
         this._loadQuote();
       }
       this._presentQuote.play();
