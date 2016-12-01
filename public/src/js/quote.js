@@ -18,11 +18,14 @@ export default class Quote {
    *  @params {String} text
    *    Text of quote
    */
-  constructor({ audioUrl = required(), text = required(), index = required() }) {
+  constructor({
+    audioUrl = required(),
+    text = required(),
+    audioTag = required()
+  }) {
     this.audioUrl = audioUrl;
-    this.audioTag = document.getElementById('quoteAudio');
-    this.index = index;
     this.text = text;
+    this.audioTag = audioTag;
     this.played = false;
   }
 
@@ -32,8 +35,14 @@ export default class Quote {
    * @chainable
    */
   play() {
-    this.audioTag.src = this.audioUrl;
-    this.audioTag.play();
+    const audioTag = this.audioTag;
+
+    audioTag.setAttribute('src', this.audioUrl);
+
+    audioTag.addEventListener('canplaythrough', () => {
+      audioTag.play();
+      this.played = true;
+    })
 
     return this;
   }

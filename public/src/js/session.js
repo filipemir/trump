@@ -28,17 +28,15 @@ export default class Session {
    * @chainable
    */
   playPresentQuote() {
-    if (!this._presentQuote) {
+    if (!this._presentQuote || this._presentQuote.played) {
       this._loadQuote();
     }
 
-    if (this._presentQuote) {
-      if (this._presentQuote.played) {
-        // this._presentQuote.stopPlaying();
-        this._loadQuote();
-      }
-      this._presentQuote.play();
-      this.displayQuote(this._presentQuote.text);
+    const presentQuote = this._presentQuote;
+
+    if (presentQuote) {
+      presentQuote.play();
+      this.displayQuote(presentQuote.text);
     }
 
     return this;
@@ -122,8 +120,10 @@ export default class Session {
   _stashQuotes(rawQuotes) {
     const quotes = this._quoteStash ? this._quoteStash : [];
 
-    _.forEach(rawQuotes, (rawQuote) => {
-      const newQuote = Quote.create(rawQuote);
+    _.forEach(rawQuotes, (rawQuote, index) => {
+      const audioTag = document.getElementById('audioTag'),
+        quoteArgs = _.defaults(rawQuote, { audioTag }),
+        newQuote = Quote.create(quoteArgs);
 
       quotes.push(newQuote);
     });
