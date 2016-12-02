@@ -38,11 +38,8 @@ export default class Quote {
     const audioTag = this.audioTag;
 
     audioTag.setAttribute('src', this.audioUrl);
-
-    audioTag.addEventListener('canplaythrough', () => {
-      audioTag.play();
-      this.played = true;
-    })
+    audioTag.play();
+    this.played = true;
 
     return this;
   }
