@@ -1,5 +1,4 @@
 import required from './required';
-import Audio from './audio';
 
 export default class Quote {
   /**
@@ -19,10 +18,14 @@ export default class Quote {
    *  @params {String} text
    *    Text of quote
    */
-  constructor({ audioUrl = required(), text = required() }) {
+  constructor({
+    audioUrl = required(),
+    text = required(),
+    audioTag = required()
+  }) {
     this.audioUrl = audioUrl;
     this.text = text;
-    this.audio = null;
+    this.audioTag = audioTag;
     this.played = false;
   }
 
@@ -32,27 +35,17 @@ export default class Quote {
    * @chainable
    */
   play() {
-    const audio = this.audio;
-
-    if (audio && audio.ready) {
-      audio.play();
-      this.played = true;
-    }
+    this.load();
+    this.audioTag.play();
+    this.played = true;
 
     return this;
   }
 
-  /**
-   * Stops the playing of the audio of quote
-   *
-   * @chainable
-   */
-  stopPlaying() {
-    const audio = this.audio;
+  load() {
+    const audioTag = this.audioTag;
 
-    if (audio && audio.ready) {
-      audio.stopPlaying();
-    }
+    audioTag.setAttribute('src', this.audioUrl);
 
     return this;
   }
@@ -65,10 +58,6 @@ export default class Quote {
    * @chainable
    */
   _setup() {
-    if (!this.audio) {
-      this.audio = Audio.create(this.audioUrl);
-    }
-
     return this;
   }
 }

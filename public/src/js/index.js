@@ -1,18 +1,14 @@
 import Session from './session';
-import $ from 'jquery';
-import Audio from './audio';
 
 const session = Session.create();
 
-session.displayOpeningText();
+session.displayQuote('Shit Trump Says');
 
-
-$('#banner').on('click touchend', () => {
-  Audio.unmute();
+document.getElementById('banner').addEventListener('click', () => {
   session.newQuote();
 })
 
-$(window).on('keydown', (event) => {
+window.addEventListener('keydown', (event) => {
   if (event.keyCode == 32) {
     session.newQuote();
   }

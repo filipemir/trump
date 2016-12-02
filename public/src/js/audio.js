@@ -1,3 +1,9 @@
+/**
+ * I discovered after developing this code that AudioContext did not
+ * work on iOS when the device was silenced. I went back to using just
+ * using HTML5 audio tags afterwards, but I'm keeping this code here
+ * for future reference.
+ */
 import required from './required';
 import audioContext from './audio-context';
 
