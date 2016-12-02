@@ -8,7 +8,6 @@ if (window.AudioContext) {
   AudioContextInstance._implementation_ = 'webkit';
 } else {
   AudioContextInstance = null;
-  // TODO: Update the alerting for outdated browsers to not use an alert
   alert("Oops. Audio is not gonna work because you're using an old browser");
 }
 
