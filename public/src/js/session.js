@@ -66,10 +66,6 @@ export default class Session {
     return this
   }
 
-  displayOpeningText() {
-    this.displayQuote('Shit Trump Says');
-  }
-
   newQuote() {
     this.playPresentQuote();
   }
