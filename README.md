@@ -1,4 +1,7 @@
+<p align="center"><img src="https://raw.githubusercontent.com/filipemir/trump/master/public/src/img/face.png"></p>
+
 # The Best Words
+
 A look at a minuscule fraction of the many truly unbelievable things Donald Trump has said.
 
 ### Local development steps
