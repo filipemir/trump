@@ -35,11 +35,17 @@ export default class Quote {
    * @chainable
    */
   play() {
+    this.load();
+    this.audioTag.play();
+    this.played = true;
+
+    return this;
+  }
+
+  load() {
     const audioTag = this.audioTag;
 
     audioTag.setAttribute('src', this.audioUrl);
-    audioTag.play();
-    this.played = true;
 
     return this;
   }
