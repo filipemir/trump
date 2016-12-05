@@ -38,7 +38,7 @@ export default class Session {
       presentQuote.play();
 
       $('audio').on('playing', () => {
-        this.displayText(presentQuote.text);
+        setTimeout(this.displayText, 100, presentQuote.text);
         $('audio').off('playing');
       });
     }
