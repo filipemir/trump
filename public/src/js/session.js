@@ -36,13 +36,17 @@ export default class Session {
 
     if (presentQuote) {
       presentQuote.play();
-      this.displayQuote(presentQuote.text);
+
+      $('audio').on('playing', () => {
+        this.displayText(presentQuote.text);
+        $('audio').off('playing');
+      });
     }
 
     return this;
   }
 
-  displayQuote(text) {
+  displayText(text) {
     const words = text.split(' '),
       wordCount = words.length,
       quoteElement = $('#quoteText');
@@ -67,6 +71,7 @@ export default class Session {
   }
 
   newQuote() {
+    $('#quoteText').empty();
     this.playPresentQuote();
   }
 

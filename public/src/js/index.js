@@ -2,7 +2,7 @@ import Session from './session';
 
 const session = Session.create();
 
-session.displayQuote('Shit Trump Says');
+session.displayText('Shit Trump Says');
 
 document.getElementById('banner').addEventListener('click', () => {
   session.newQuote();
