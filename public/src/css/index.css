@@ -51,9 +51,11 @@ body {
 }
 
 #banner {
+  border: 3px solid #d3d3d3;
+  border-radius: 60px;
+  animation: load8 1s infinite linear;
   outline:  0;
   background:  transparent;
-  border:  none;
   display:  block;
   position:  absolute;
   width: 400px;
