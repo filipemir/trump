@@ -1,3 +1,6 @@
+$grey: #d3d3d3;
+$orange: #dd9d3e;
+
 body {
   background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
   background-color: black;
@@ -18,7 +21,7 @@ body {
 }
 
 #quoteText {
-  color: #d3d3d3;
+  color: $grey;
   letter-spacing: -4px;
   line-height: 1;
   text-align: center;
@@ -70,7 +73,7 @@ body {
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
-  fill: #d3d3d3;
+  fill: $grey;
   z-index:  3;
   cursor:  pointer;
   transition:  all 0.2s;
@@ -81,21 +84,21 @@ body {
 }
 
 #face, #hair, #words {
-  fill: #d3d3d3;
+  fill: $grey;
   transition:  all 0.3s;
 }
 
 #face, #hair, #dots {
-  fill: #d3d3d3;
+  fill: $grey;
   transition:  all 0.3s;
 }
 
 #button:hover #face {
-  fill:  #dd9d3e;
+  fill:  $orange;
 }
 
 #button:hover {
-  border-color:  #dd9d3e;
+  border-color:  $orange;
 }
 
 #button:active {

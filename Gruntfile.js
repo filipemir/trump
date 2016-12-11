@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       `${paths.appDir}/**/*.js`,
       `${paths.grunt}/**/*.js`,
       `${paths.src.js}/**/*.js`,
-      `${paths.src.css}/**/*.css`,
+      `${paths.src.css}/**/*.scss`,
     ],
     eslintFiles = _.filter(watchFiles, (value) => {
       return /\.js$/.test(value)
@@ -34,21 +34,21 @@ module.exports = function(grunt) {
 
     clean: {
       all: {
-        src: [`${paths.dist.rootDir}/*`]
+        src: [`${paths.dist.rootDir}/*`, `${paths.temp.rootDir}/*`]
       }
     },
 
     copy: {
-      files: {
-        src: `${paths.src.img}/face.jpg`,
-        dest: `${paths.dist.img}/trump.jpg`,
+      js: {
+        src: `${paths.temp.js}/trump.js`,
+        dest: `${paths.dist.js}/trump.min.js`,
       }
     },
 
     cssmin: {
       default: {
         files: {
-          [`${paths.dist.css}/index.min.css`]: `${paths.src.css}/index.css`
+          [`${paths.dist.css}/index.min.css`]: `${paths.temp.css}/index.css`
         }
       }
     },
@@ -65,6 +65,14 @@ module.exports = function(grunt) {
       }
     },
 
+    sass: {
+        dist: {
+            files: {
+                [`${paths.temp.css}/index.css`]: `${paths.src.css}/index.scss`
+            }
+        }
+    },
+
     shell: {
       dropDb: {
         command: `mongo ${dbConfig.location}/${dbConfig.db} ${mongoCredentials} --eval "db.dropDatabase()"`
@@ -77,21 +85,21 @@ module.exports = function(grunt) {
     uglify: {
       default: {
         files: {
-          [`${paths.dist.js}/trump.min.js`]: `${paths.dist.js}/trump.js`
+          [`${paths.dist.js}/trump.min.js`]: `${paths.temp.js}/trump.js`
         }
       }
     },
 
     watch: {
       files: watchFiles,
-      tasks: ['eslint', 'webpack', 'cssmin']
+      tasks: ['eslint', 'webpack', 'sass', 'cssmin']
     },
 
     webpack: {
       default: {
         entry: `${paths.src.js}/index.js`,
         output: {
-          path: `${paths.dist.js}`,
+          path: `${paths.temp.js}`,
           filename: 'trump.js'
         },
         module: {
@@ -113,12 +121,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-webpack');
 
-  grunt.registerTask('develop', ['eslint', 'clean', 'webpack', 'cssmin', 'copy', 'express', 'watch']);
+  grunt.registerTask('develop', ['eslint', 'clean', 'webpack', 'copy:js', 'sass', 'cssmin', 'express', 'watch']);
   grunt.registerTask('default', 'develop');
   grunt.registerTask('db-seed', 'shell:seedDb');
   grunt.registerTask('db-drop', 'shell:dropDb');
-  grunt.registerTask('build', ['clean', 'webpack', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('build', ['clean', 'webpack', 'uglify', 'sass', 'cssmin']);
 };
