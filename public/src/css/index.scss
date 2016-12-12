@@ -1,0 +1,197 @@
+$grey: #d3d3d3;
+$orange: #dd9d3e;
+$smallScreenWidth: 700px;
+
+body {
+  background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
+  background-attachment: fixed;
+  background-color: black;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  font-family: 'Carter One', sans-serif;
+}
+
+#quote {
+  font-size: 35px;
+
+  #text {
+    color: $grey;
+    letter-spacing: -4px;
+    line-height: 0.90;
+    text-align: center;
+    text-transform: uppercase;
+
+    margin: 0;
+    top: 45%;
+    left: 50%;
+    position: absolute;
+    width: 70%;
+    max-width:  1000px;
+
+    // Center the text
+    transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+
+    // Each word is introduced in a separate span, so this styling applies to individual words:
+    span {
+      margin-right: 10px;
+      margin-left:  10px;
+      display:  inline-block;
+      transition:  all 1s;
+
+      // The skewing below italicizes the text. I used this approach because using 'font-style: italic'
+      // gave me issues on iOS: the sections where the italicized letters overlapped vertically were only
+      // rendering once the animations of the text was done. This also was the added benefit of making the
+      // letters a little more animated (since the into class below is missing these transforms)
+      transform: skewX(-20deg);
+      -webkit-transform: skewX(-20deg);
+      -moz-transform: skewX(-20deg);
+      -o-transform: skewX(-20deg);
+    }
+
+    &.intro span {
+      // This class is added to the words when they're first introduced, so that they seem to vaporize
+      // in when the intro class is removed
+      opacity: 0;
+      transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      -webkit-transform: translateY(100%);
+      -o-transform: translateY(100%);
+    }
+  }
+}
+
+#button {
+  background:  transparent;
+  border: none;
+  bottom:  30px;
+  cursor:  pointer;
+  fill: $grey;
+  left:  50%;
+  outline:  0;
+  position:  absolute;
+  transition:  all 0.2s;
+  width: 100px;
+
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+
+  &.unclicked {
+    animation: shake 4s ease 2s infinite;
+  }
+
+  &:active {
+    -moz-transform: translateX(-50%) scale(0.95);
+    -webkit-transform: translateX(-50%) scale(0.95);
+    -o-transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(0.95);
+  }
+
+  #face, #hair {
+    fill: $grey;
+    transition:  all 0.3s;
+  }
+
+  &.loading #face {
+    animation: glow 1s ease 0s infinite;
+  }
+}
+
+@media (max-width: $smallScreenWidth) {
+  #quote {
+    font-size: 20px;
+
+    #text {
+      width: 100%;
+    }
+  }
+
+  #button {
+    width: 15%;
+    min-width: 60px;
+    bottom: 10px;
+  }
+}
+
+// Animations
+@keyframes glow {
+  0%, 100% {
+    fill: $grey;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
+
+@-webkit-keyframes glow {
+  0%, 100% {
+    fill: $grey;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+
+  2%, 4% {
+    -webkit-transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  6%, 10%, 14%, 18% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  8%, 12%, 16% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  20% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes shake {
+   0% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+
+  2%, 4% {
+    -webkit-transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  6%, 10%, 14%, 18% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  8%, 12%, 16% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  20% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+}

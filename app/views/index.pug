@@ -3,11 +3,12 @@ html
   head
     title= 'Shit Trump Says'
     link(rel="stylesheet", type="text/css", href="css/index.min.css")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Amatic+SC")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Carter+One")
+    meta(name="viewport", content="width=device-width,initial-scale=1")
   body
-    div(id="quoteBox")
-      h1(id="quoteText")
+    div(id="quote")
+      h1(id="text")
       audio(id="audioTag")
-    button(id="banner")
-      include img/banner.svg
-    script(src="js/trump.js")
+    div(id="button", class="unclicked")
+      include img/trump-head.svg
+    script(src="js/trump.min.js")

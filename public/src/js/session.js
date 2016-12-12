@@ -49,9 +49,13 @@ export default class Session {
   displayText(text) {
     const words = text.split(' '),
       wordCount = words.length,
-      quoteElement = $('#quoteText');
+      quoteElement = $('#text');
 
     quoteElement.empty();
+    $('#face').on('animationiteration', () => {
+      $('#button').removeClass('loading');
+      $('audio').off('animationiteration');
+    })
 
     quoteElement.toggleClass('intro');
 
@@ -71,7 +75,7 @@ export default class Session {
   }
 
   newQuote() {
-    $('#quoteText').empty();
+    $('#text').empty();
     this.playPresentQuote();
   }
 
