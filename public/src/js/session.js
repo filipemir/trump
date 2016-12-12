@@ -49,7 +49,7 @@ export default class Session {
   displayText(text) {
     const words = text.split(' '),
       wordCount = words.length,
-      quoteElement = $('#quoteText');
+      quoteElement = $('#text');
 
     quoteElement.empty();
 
@@ -71,7 +71,7 @@ export default class Session {
   }
 
   newQuote() {
-    $('#quoteText').empty();
+    $('#text').empty();
     this.playPresentQuote();
   }
 

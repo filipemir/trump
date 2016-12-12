@@ -1,8 +1,10 @@
 $grey: #d3d3d3;
 $orange: #dd9d3e;
+$smallScreenWidth: 700px;
 
 body {
   background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
+  background-attachment: fixed;
   background-color: black;
   background-size: cover;
   -moz-background-size: cover;
@@ -10,116 +12,109 @@ body {
   -o-background-size: cover;
   background-position: center center;
   background-repeat:  no-repeat;
-  background-attachment: fixed;
-
   font-family: 'Carter One', sans-serif;
+}
+
+#quote {
   font-size: 35px;
+
+  #text {
+    color: $grey;
+    letter-spacing: -4px;
+    line-height: 0.90;
+    text-align: center;
+    text-transform: uppercase;
+
+    margin: 0;
+    top: 45%;
+    left: 50%;
+    position: absolute;
+    width: 70%;
+    max-width:  1000px;
+
+    // Center the text
+    transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+
+    // Each word is introduced in a separate span, so this styling applies to individual words:
+    span {
+      margin-right: 10px;
+      margin-left:  10px;
+      display:  inline-block;
+      transition:  all 1s;
+
+      // The skewing below italicizes the text. I used this approach because using 'font-style: italic'
+      // gave me issues on iOS: the sections where the italicized letters overlapped vertically were only
+      // rendering once the animations of the text was done. This also was the added benefit of making the
+      // letters a little more animated (since the into class below is missing these transforms)
+      transform: skewX(-20deg);
+      -webkit-transform: skewX(-20deg);
+      -moz-transform: skewX(-20deg);
+      -o-transform: skewX(-20deg);
+    }
+
+    &.intro span {
+      // This class is added to the words when they're first introduced, so that they seem to vaporize
+      // in when the intro class is removed
+      opacity: 0;
+      transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      -webkit-transform: translateY(100%);
+      -o-transform: translateY(100%);
+    }
+  }
 }
 
-#quoteBox {
-  width:  100%;
-}
-
-#quoteText {
-  color: $grey;
-  letter-spacing: -4px;
-  line-height: 1;
-  text-align: center;
-  display: block;
-  width: 70%;
-  margin: 0;
-  top: 45%;
-  left: 50%;
-  max-width:  1200px;
-  text-transform: uppercase;
-
-  -moz-transform: translateY(-50%) translateX(-50%);
-  -webkit-transform: translateY(-50%) translateX(-50%);
-  -o-transform: translateY(-50%) translateX(-50%);
-  transform: translateY(-50%) translateX(-50%);
-  position: absolute;
-}
-
-#quoteText span {
-  margin-right: 10px;
-  margin-left:  10px;
-  display:  inline-block;
-  transition:  all 1s;
-
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
-  transform: skewX(-20deg);
-}
-
-#quoteText.intro span {
-  -moz-transform: translateY(100%);
-  -webkit-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%);
-  opacity: 0;
-}
 
 #button {
-  outline:  0;
-  border: none;
   background:  transparent;
-  display:  block;
-  position:  absolute;
-  width: 150px;
+  border: none;
   bottom:  30px;
-  left:  50%;
-  -moz-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  fill: $grey;
-  z-index:  3;
   cursor:  pointer;
+  fill: $grey;
+  left:  50%;
+  outline:  0;
+  position:  absolute;
   transition:  all 0.2s;
-}
+  width: 100px;
 
-#trumpHead {
-  width:  75%;
-}
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 
-#face, #hair, #words {
-  fill: $grey;
-  transition:  all 0.3s;
-}
-
-#face, #hair, #dots {
-  fill: $grey;
-  transition:  all 0.3s;
-}
-
-#button:hover #face {
-  fill:  $orange;
-}
-
-#button:hover {
-  border-color:  $orange;
-}
-
-#button:active {
-  -moz-transform: translateX(-50%) scale(0.97);
-  -webkit-transform: translateX(-50%) scale(0.97);
-  -o-transform: translateX(-50%) scale(0.97);
-  transform: translateX(-50%) scale(0.97);
-}
-
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 20px;
+  &:active {
+    -moz-transform: translateX(-50%) scale(0.95);
+    -webkit-transform: translateX(-50%) scale(0.95);
+    -o-transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(0.95);
   }
 
-  #quoteText {
-    width: 100%
+  #face, #hair {
+    fill: $grey;
+    transition:  all 0.3s;
+  }
+
+  &:hover #face {
+    fill:  $orange;
+  }
+}
+
+
+@media (max-width: $smallScreenWidth) {
+  #quote {
+    font-size: 20px;
+
+    #text {
+      width: 100%;
+    }
   }
 
   #button {
-    width: 20%;
-    min-width: 100px;
+    width: 15%;
+    min-width: 60px;
     bottom: 10px;
   }
 }
