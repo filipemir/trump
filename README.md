@@ -25,4 +25,12 @@ DB_PASSWORD=<password to access DB>
 
 Then seed your production database by running `grunt db-seed --env=production`.
 
+### To dos:
+* Move DB location to .env
+* Add ASCII banner at top of elements
+* Add share functionality
+* Add links to source
+* Add credits
+* Attempt to bring back curtain fade
+
 
