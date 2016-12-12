@@ -67,7 +67,6 @@ body {
   }
 }
 
-
 #button {
   background:  transparent;
   border: none;
@@ -85,6 +84,10 @@ body {
   -o-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
 
+  &.unclicked {
+    animation: shake 4s ease 2s infinite;
+  }
+
   &:active {
     -moz-transform: translateX(-50%) scale(0.95);
     -webkit-transform: translateX(-50%) scale(0.95);
@@ -97,11 +100,10 @@ body {
     transition:  all 0.3s;
   }
 
-  &:hover #face {
-    fill:  $orange;
+  &.loading #face {
+    animation: glow 1s ease 0s infinite;
   }
 }
-
 
 @media (max-width: $smallScreenWidth) {
   #quote {
@@ -116,5 +118,80 @@ body {
     width: 15%;
     min-width: 60px;
     bottom: 10px;
+  }
+}
+
+// Animations
+@keyframes glow {
+  0%, 100% {
+    fill: $grey;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
+
+@-webkit-keyframes glow {
+  0%, 100% {
+    fill: $grey;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+
+  2%, 4% {
+    -webkit-transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  6%, 10%, 14%, 18% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  8%, 12%, 16% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  20% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes shake {
+   0% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
+  }
+
+  2%, 4% {
+    -webkit-transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  6%, 10%, 14%, 18% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  8%, 12%, 16% {
+    -webkit-transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: translateX(-50%) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  20% {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+    transform: translateX(-50%) scale3d(1, 1, 1);
   }
 }

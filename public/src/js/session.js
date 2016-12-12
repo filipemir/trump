@@ -52,6 +52,10 @@ export default class Session {
       quoteElement = $('#text');
 
     quoteElement.empty();
+    $('#face').on('animationiteration', () => {
+      $('#button').removeClass('loading');
+      $('audio').off('animationiteration');
+    })
 
     quoteElement.toggleClass('intro');
 
