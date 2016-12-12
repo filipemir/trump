@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
     watch: {
       files: watchFiles,
-      tasks: ['eslint', 'webpack', 'sass', 'cssmin']
+      tasks: ['eslint', 'webpack', 'copy:js', 'sass', 'cssmin']
     },
 
     webpack: {
