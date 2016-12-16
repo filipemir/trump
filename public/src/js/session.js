@@ -20,6 +20,7 @@ export default class Session {
     this._quoteStashSize = 10;
     this._requestPath = 'trumpism';
     this._presentQuote = null;
+    this._round = 0;
   }
 
   /**
@@ -37,9 +38,10 @@ export default class Session {
     if (presentQuote) {
       presentQuote.play();
 
-      $('audio').on('playing', () => {
-        setTimeout(this.displayText, 100, presentQuote.text);
-        $('audio').off('playing');
+      $('audio').one('playing', () => {
+        const displayText = this.displayText.bind(this);
+        setTimeout(displayText, 100, presentQuote.text);
+
       });
     }
 
@@ -51,24 +53,41 @@ export default class Session {
       wordCount = words.length,
       quoteElement = $('#text');
 
+    if (this._round === 0 || this._round === 1) {
+      quoteElement.toggleClass('first-round');
+    }
+
+    if (this._round === 1) {
+      quoteElement.on('click', () => {
+        window.open(this._presentQuote.sourceUrl, "blank");
+      });
+    }
+
+    this._round++;
+
     quoteElement.empty();
-    $('#face').on('animationiteration', () => {
-      $('#button').removeClass('loading');
-      $('audio').off('animationiteration');
-    })
 
     quoteElement.toggleClass('intro');
 
     for (let i = 0; i < wordCount; i++) {
       const word = words[i],
         delay = i * 1/wordCount,
-        html = `<span style="transition-delay: ${delay}s;">${word}</span>`;
+        html = `<span class="word" style="transition-delay: ${delay}s;">${word}</span>`;
 
       quoteElement.append(html);
+
+      quoteElement.one('mouseenter touchstart', () => {
+        $('.word').css('transition-delay', '0s');
+      })
     }
 
     setTimeout(() => {
       quoteElement.toggleClass('intro');
+
+      $('#face').on('animationiteration', () => {
+        $('#button').removeClass('loading');
+        $('audio').off('animationiteration');
+      })
     }, 100);
 
     return this
@@ -126,7 +145,7 @@ export default class Session {
     const quotes = this._quoteStash ? this._quoteStash : [];
 
     _.forEach(rawQuotes, (rawQuote, index) => {
-      const audioTag = document.getElementById('audioTag'),
+      const audioTag = document.getElementById('audio-tag'),
         quoteArgs = _.defaults(rawQuote, { audioTag }),
         newQuote = Quote.create(quoteArgs);
 

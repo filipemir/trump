@@ -19,13 +19,15 @@ export default class Quote {
    *    Text of quote
    */
   constructor({
+    audioTag = required(),
     audioUrl = required(),
     text = required(),
-    audioTag = required()
+    sourceUrl = required(),
   }) {
+    this.audioTag = audioTag;
     this.audioUrl = audioUrl;
     this.text = text;
-    this.audioTag = audioTag;
+    this.sourceUrl = sourceUrl;
     this.played = false;
   }
 
@@ -36,7 +38,10 @@ export default class Quote {
    */
   play() {
     this.load();
-    this.audioTag.play();
+    const audioTag = this.audioTag;
+    setTimeout(() => {
+      audioTag.play();
+    }, 500);
     this.played = true;
 
     return this;
@@ -46,6 +51,7 @@ export default class Quote {
     const audioTag = this.audioTag;
 
     audioTag.setAttribute('src', this.audioUrl);
+    document.getElementById('text').setAttribute('href', this.sourceUrl);
 
     return this;
   }

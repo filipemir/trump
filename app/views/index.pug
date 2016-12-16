@@ -1,14 +1,19 @@
 doctype html
 html
   head
-    title= 'Shit Trump Says'
+    title="Shit Trump Says"
     link(rel="stylesheet", type="text/css", href="css/index.min.css")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Carter+One")
     meta(name="viewport", content="width=device-width,initial-scale=1")
-  body
-    div(id="quote")
-      h1(id="text")
-      audio(id="audioTag")
-    div(id="button", class="unclicked")
-      include img/trump-head.svg
+  body(style="background-color: black")
+    div(id="content")
+      div(id="quote")
+        div(id="text")
+        audio(id="audio-tag")
+      div(id="action-rail")
+        div(id="social")
+          include img/twitter-icon.svg
+          include img/fb-icon.svg
+        div(id="button", class="unclicked")
+          include img/trump-head.svg
     script(src="js/trump.min.js")

@@ -1,4 +1,5 @@
-$grey: #d3d3d3;
+// $primary: #d3d3d3;
+$primary: #fff;
 $orange: #dd9d3e;
 $smallScreenWidth: 700px;
 
@@ -13,13 +14,19 @@ body {
   background-position: center center;
   background-repeat:  no-repeat;
   font-family: 'Carter One', sans-serif;
+  width: 100%;
+
+  #content {
+    max-width: 1200px;
+  }
 }
 
 #quote {
-  font-size: 35px;
+  font-size: 70px;
 
   #text {
-    color: $grey;
+    color: $primary;
+    cursor:  pointer;
     letter-spacing: -4px;
     line-height: 0.90;
     text-align: center;
@@ -38,16 +45,18 @@ body {
     -webkit-transform: translateY(-50%) translateX(-50%);
     -o-transform: translateY(-50%) translateX(-50%);
 
-    // Each word is introduced in a separate span, so this styling applies to individual words:
-    span {
+    // Each word is introduced separately, so this styling applies to individual words:
+    .word {
       margin-right: 10px;
       margin-left:  10px;
       display:  inline-block;
-      transition:  all 1s;
+      // transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s, -moz-transform 1s, -o-transform 1s;
+      transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s;
+      text-shadow: 3px 3px $orange;
 
       // The skewing below italicizes the text. I used this approach because using 'font-style: italic'
       // gave me issues on iOS: the sections where the italicized letters overlapped vertically were only
-      // rendering once the animations of the text was done. This also was the added benefit of making the
+      // rendering once the animations of the text was done. This also has the added benefit of making the
       // letters a little more animated (since the into class below is missing these transforms)
       transform: skewX(-20deg);
       -webkit-transform: skewX(-20deg);
@@ -55,7 +64,11 @@ body {
       -o-transform: skewX(-20deg);
     }
 
-    &.intro span {
+    &:hover .word {
+      text-shadow: 6px 6px $orange;
+    }
+
+    &.intro .word {
       // This class is added to the words when they're first introduced, so that they seem to vaporize
       // in when the intro class is removed
       opacity: 0;
@@ -67,12 +80,16 @@ body {
   }
 }
 
+#action-rail {
+  width: 100%;
+}
+
 #button {
   background:  transparent;
   border: none;
   bottom:  30px;
   cursor:  pointer;
-  fill: $grey;
+  fill: $primary;
   left:  50%;
   outline:  0;
   position:  absolute;
@@ -88,16 +105,24 @@ body {
     animation: shake 4s ease 2s infinite;
   }
 
-  &:active {
+  &.active {
     -moz-transform: translateX(-50%) scale(0.95);
     -webkit-transform: translateX(-50%) scale(0.95);
     -o-transform: translateX(-50%) scale(0.95);
     transform: translateX(-50%) scale(0.95);
+
+    #face {
+      fill: $orange;
+    }
   }
 
   #face, #hair {
-    fill: $grey;
+    fill: $primary;
     transition:  all 0.3s;
+  }
+
+  &.hover #face {
+    fill: $orange;
   }
 
   &.loading #face {
@@ -105,9 +130,31 @@ body {
   }
 }
 
+#social {
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 30px;
+  position: absolute;
+  padding: 30px 40px;
+  text-align: right;
+
+  .social-icon {
+    fill: $primary;
+    cursor:  pointer;
+    width: 45px;
+    margin: 0 15px;
+    transition: all 0.2s;
+
+    &:hover {
+      fill: $orange;
+    }
+  }
+
+}
+
 @media (max-width: $smallScreenWidth) {
   #quote {
-    font-size: 20px;
+    font-size: 40px;
 
     #text {
       width: 100%;
@@ -119,12 +166,23 @@ body {
     min-width: 60px;
     bottom: 10px;
   }
+
+  #social {
+    bottom: 10px;
+    padding: 10px 10px;
+
+    .social-icon {
+      width: 10px;
+      margin: 0 5px;
+      min-width: 30px;
+    }
+  }
 }
 
 // Animations
 @keyframes glow {
-  0%, 100% {
-    fill: $grey;
+  0% 100% {
+    fill: $primary;
   }
 
   40%, 50%, 65% {
@@ -134,7 +192,7 @@ body {
 
 @-webkit-keyframes glow {
   0%, 100% {
-    fill: $grey;
+    fill: $primary;
   }
 
   40%, 50%, 65% {
