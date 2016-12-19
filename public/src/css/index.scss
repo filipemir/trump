@@ -132,17 +132,15 @@ body {
 
 #social {
   box-sizing: border-box;
-  width: 99%;
-  bottom: 30px;
+  bottom: 18px;
   position: absolute;
-  padding: 0px 40px;
-  text-align: right;
+  padding: 0px 50px;
 
   .social-icon {
     fill: $primary;
     cursor:  pointer;
-    height: 40px;
-    margin: 15px 15px;
+    height: 30px;
+    margin: 30px 0px;
     transition: all 0.2s;
     display: block;
 
