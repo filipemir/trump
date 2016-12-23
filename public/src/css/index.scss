@@ -64,7 +64,7 @@ body {
       -o-transform: skewX(-20deg);
     }
 
-    &:hover .word {
+    &.hover .word {
       text-shadow: 6px 6px $orange;
     }
 
@@ -144,7 +144,7 @@ body {
     transition: all 0.2s;
     display: block;
 
-    &:hover {
+    &.hover {
       fill: $orange;
     }
   }

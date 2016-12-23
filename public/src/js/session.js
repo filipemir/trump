@@ -63,8 +63,6 @@ export default class Session {
       });
     }
 
-    this._round++;
-
     quoteElement.empty();
 
     quoteElement.toggleClass('intro');
@@ -94,6 +92,7 @@ export default class Session {
   }
 
   newQuote() {
+    this._round++;
     $('#text').empty();
     this.playPresentQuote();
   }

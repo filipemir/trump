@@ -1,39 +1,52 @@
 import Session from './session';
-import $ from 'jquery'
+import $ from 'jquery';
+
+// import uiInteractions from './ui-interactions';
 
 const session = Session.create();
 
 session.displayText('Shit Trump Says');
 
+
+function startFaceGlow() {
+  $('#button').addClass('loading');
+}
+
+// function endFaceGlow() {
+//    $('#button').removeClass('loading');
+// }
+
 $('#button, #text.first-round').on('click', () => {
-  document.getElementById('button').className = 'loading';
+  startFaceGlow();
   session.newQuote();
   $('#text.first-round').off('click');
 })
 
-window.addEventListener('keydown', (event) => {
+$(window).on('keydown', (event) => {
   if (event.keyCode == 32) {
-    document.getElementById('button').className = 'active';
+    $('#button').addClass('active');
     session.newQuote();
     setTimeout(() => {
-      document.getElementById('button').className = 'loading';
+      $('#button').addClass('loading');
+      $('#button').removeClass('active');
     }, 100)
   }
-})
+});
 
-$('#button').on('mousedown touchstart', () => {
-  $('#button').addClass('active');
-})
-
-$('#button').on('mouseup touchend', () => {
-  $('#button').removeClass('active');
-})
 
 // Using native hover leaves button selected in mobile:
-$('#button').on('mouseover', () => {
-  $('#button').addClass('hover');
-})
+function makeElementsHoverable(selector) {
+  $(selector).on('mouseover mouseout', function() {
+    $(this).toggleClass('hover');
+  })
+}
 
-$('#button').on('mouseout', () => {
-  $('#button').removeClass('hover');
+makeElementsHoverable('#button, .social-icon, #text');
+
+function depressButton() {
+  $('#button').toggleClass('active');
+}
+
+$('#button').on('mousedown mouseup touchstart touchend', () => {
+  depressButton();
 })

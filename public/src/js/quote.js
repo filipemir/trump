@@ -22,7 +22,7 @@ export default class Quote {
     audioTag = required(),
     audioUrl = required(),
     text = required(),
-    sourceUrl = required(),
+    sourceUrl = required()
   }) {
     this.audioTag = audioTag;
     this.audioUrl = audioUrl;
