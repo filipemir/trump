@@ -8,6 +8,11 @@ export default class UIInteractions {
     this._hoverableElements = $('#button, .social-icon, #text');
   }
 
+  faceGlowTilPlay() {
+    this._startFaceGlow();
+    this._audioTag.on('playing', this._stopFaceGlow);
+  }
+
   startFaceGlow() {
     this._button.addClass('loading');
   }
@@ -18,15 +23,17 @@ export default class UIInteractions {
     })
   }
 
-  glowFaceWhileLoading() {
-    this._startFaceGlow();
-
-    this._audioTag.on('playing', this._stopFaceGlow);
-  }
-
   makeElementsHoverable(selector) {
     this._hoverableElements.on('mouseover mouseout', function() {
       $(this).toggleClass('hover');
     })
+  }
+
+  pressButton() {
+    this._button.toggleClass('active');
+  }
+
+  makeButtonPressable() {
+    this._button.on('mousedown mouseup touchstart touchend', this.pressButton);
   }
 }
