@@ -1,8 +1,9 @@
 import $ from 'jquery'
 
 export default class VisualEffects {
-  static setup() {
-    const visuals = new VisualEffects();
+
+  static setup(args) {
+    const visuals = new VisualEffects(args);
 
     visuals.displayText('Shit Trump Says')
     visuals._enableHoverables();
@@ -12,18 +13,18 @@ export default class VisualEffects {
     return visuals;
   }
 
-  constructor() {
-    this._audioTag = $('audio');
-    this._button = $('#button');
-    this._face = $('#face');
-    this._hoverableElements = $('#button, .social-icon, #text');
-    this._text = $('#text');
-    this._window = $(window);
+  constructor({ audio, button, face, hoverableElements, text, window }) {
+    this._audio = audio;
+    this._button = button;
+    this._face = face;
+    this._hoverableElements = hoverableElements;
+    this._text = text;
+    this._window = window;
   }
 
   glowFaceTillPlay() {
     this._changeButtonLoadingState(true);
-    this._audioTag.one('playing', () => {
+    this._audio.one('playing', () => {
       this._stopFaceGlow();
     });
   }
@@ -41,7 +42,7 @@ export default class VisualEffects {
   }
 
   displayTextOnPlay(text) {
-    this._audioTag.one('playing', () => {
+    this._audio.one('playing', () => {
       this.displayText(text);
     });
   }
@@ -116,4 +117,5 @@ export default class VisualEffects {
       setTimeout(this._changeButtonLoadingState(false), 500)
     })
   }
+
 }

@@ -4,16 +4,24 @@ import Quote from './quote';
 import VisualEffects from './visual-effects';
 
 export default class Session {
-  /**
-   * Static class method to create and initialize a new instance
-   */
-  static setup() {
-    const session = new Session();
 
-    session._getQuotes(session._quoteStashSize);
-    session._visuals = VisualEffects.setup();
+  static initialize() {
+    const s = new Session(),
+      permanentPageElements = {
+        audio: $('audio'),
+        button: $('#button'),
+        face: $('#face'),
+        hoverableElements: $('#button, .social-icon, #text'),
+        text: $('#text'),
+        window: $(window)
+      };
 
-    return session;
+    s._permanentPageElements = permanentPageElements;
+    s._getQuotes(s._quoteStashSize);
+    s._visuals = VisualEffects.setup(permanentPageElements);
+    s.setupNewQuoteListeners();
+
+    return s;
   }
 
   /**
@@ -21,19 +29,14 @@ export default class Session {
    *
    * @constructor
    */
-  constructor() {
+  constructor(quoteStashSize = 10) {
     this._quoteStash = null;
-    this._quoteStashSize = 10;
+    this._quoteStashSize = quoteStashSize;
     this._requestPath = 'trumpism';
     this._presentQuote = null;
     this._round = 0;
     this._visuals = null;
-
-    this._audioTag = $('audio');
-    this._button = $('#button');
-    this._face = $('#face');
-    this._text = $('#text');
-    this._wordElement = $('.word');
+    this._permanentPageElements = {};
   }
 
   /**
@@ -67,12 +70,28 @@ export default class Session {
     this.playQuote();
   }
 
+  setupNewQuoteListeners() {
+    this._permanentPageElements.button.on('click', () => {
+      this.newQuote();
+    })
+
+    $('#text.first-round').on('click', () => {
+      this.newQuote();
+    })
+
+    $(window).on('keydown', () => {
+      if (event.keyCode === 32) {
+        this.newQuote();
+      }
+    })
+  }
+
   // -------------------------------------------------------------------------------------- //
 
   _firstQuoteSetup() {
-    this._button.removeClass('unclicked');
+    this._permanentPageElements.button.removeClass('unclicked');
 
-    this._text.removeClass('first-round')
+    this._permanentPageElements.text.removeClass('first-round')
       .on('click', () => {
         window.open(this._presentQuote.sourceUrl, "blank");
       });
@@ -125,7 +144,7 @@ export default class Session {
     const quotes = this._quoteStash ? this._quoteStash : [];
 
     _.forEach(rawQuotes, (rawQuote, index) => {
-      const audioTag = document.getElementById('audio-tag'),
+      const audioTag = this._permanentPageElements.audio[0],
         quoteArgs = _.defaults(rawQuote, { audioTag }),
         newQuote = Quote.create(quoteArgs);
 
@@ -150,4 +169,5 @@ export default class Session {
 
     return this;
   }
+
 }
