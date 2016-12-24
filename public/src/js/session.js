@@ -146,7 +146,7 @@ export default class Session {
     _.forEach(rawQuotes, (rawQuote, index) => {
       const audioTag = this._permanentPageElements.audio[0],
         quoteArgs = _.defaults(rawQuote, { audioTag }),
-        newQuote = Quote.create(quoteArgs);
+        newQuote = new Quote(quoteArgs);
 
       quotes.push(newQuote);
     });

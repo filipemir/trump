@@ -2,13 +2,6 @@ import required from './required';
 
 export default class Quote {
   /**
-   * Static class method to create and initialize a new instance
-   */
-  static create(args) {
-    return new Quote(args)._setup();
-  }
-
-  /**
    * Creates a new quote instance
    *
    * @constructor
@@ -52,17 +45,6 @@ export default class Quote {
 
     audioTag.setAttribute('src', this.audioUrl);
 
-    return this;
-  }
-
-  // --------------------------------------------------------- //
-
-  /**
-   * Starts the initialization of a quote by creating its audio
-   *
-   * @chainable
-   */
-  _setup() {
     return this;
   }
 }
