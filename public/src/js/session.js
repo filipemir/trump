@@ -1,13 +1,19 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import Quote from './quote';
+import VisualEffects from './visual-effects';
 
 export default class Session {
   /**
    * Static class method to create and initialize a new instance
    */
-  static create() {
-    return new Session()._setup();
+  static setup() {
+    const session = new Session();
+
+    session._getQuotes(session._quoteStashSize);
+    session._visuals = VisualEffects.setup();
+
+    return session;
   }
 
   /**
@@ -21,6 +27,13 @@ export default class Session {
     this._requestPath = 'trumpism';
     this._presentQuote = null;
     this._round = 0;
+    this._visuals = null;
+
+    this._audioTag = $('audio');
+    this._button = $('#button');
+    this._face = $('#face');
+    this._text = $('#text');
+    this._wordElement = $('.word');
   }
 
   /**
@@ -28,7 +41,7 @@ export default class Session {
    *
    * @chainable
    */
-  playPresentQuote() {
+  playQuote() {
     if (!this._presentQuote || this._presentQuote.played) {
       this._loadQuote();
     }
@@ -37,67 +50,35 @@ export default class Session {
 
     if (presentQuote) {
       presentQuote.play();
-
-      $('audio').one('playing', () => {
-        const displayText = this.displayText.bind(this);
-        setTimeout(displayText, 100, presentQuote.text);
-
-      });
+      this._visuals.displayTextOnPlay(presentQuote.text);
     }
 
     return this;
   }
 
-  displayText(text) {
-    const words = text.split(' '),
-      wordCount = words.length,
-      quoteElement = $('#text');
-
-    if (this._round === 0 || this._round === 1) {
-      quoteElement.toggleClass('first-round');
-    }
-
-    if (this._round === 1) {
-      quoteElement.on('click', () => {
-        window.open(this._presentQuote.sourceUrl, "blank");
-      });
-    }
-
-    quoteElement.empty();
-
-    quoteElement.toggleClass('intro');
-
-    for (let i = 0; i < wordCount; i++) {
-      const word = words[i],
-        delay = i * 1/wordCount,
-        html = `<span class="word" style="transition-delay: ${delay}s;">${word}</span>`;
-
-      quoteElement.append(html);
-
-      quoteElement.one('mouseenter touchstart', () => {
-        $('.word').css('transition-delay', '0s');
-      })
-    }
-
-    setTimeout(() => {
-      quoteElement.toggleClass('intro');
-
-      $('#face').on('animationiteration', () => {
-        $('#button').removeClass('loading');
-        $('audio').off('animationiteration');
-      })
-    }, 100);
-
-    return this
-  }
-
   newQuote() {
     this._round++;
-    $('#text').empty();
-    this.playPresentQuote();
+
+    if (this._round === 1) {
+      this._firstQuoteSetup();
+    }
+
+    this._visuals.glowFaceTillPlay();
+    this.playQuote();
   }
 
-  // --------------------------------------------------------- //
+  // -------------------------------------------------------------------------------------- //
+
+  _firstQuoteSetup() {
+    this._button.removeClass('unclicked');
+
+    this._text.removeClass('first-round')
+      .on('click', () => {
+        window.open(this._presentQuote.sourceUrl, "blank");
+      });
+
+    return this;
+  }
 
   /**
    * Makes an ajax request for the number of quotes specified

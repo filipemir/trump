@@ -51,7 +51,6 @@ export default class Quote {
     const audioTag = this.audioTag;
 
     audioTag.setAttribute('src', this.audioUrl);
-    document.getElementById('text').setAttribute('href', this.sourceUrl);
 
     return this;
   }
