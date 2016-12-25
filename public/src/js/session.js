@@ -12,6 +12,7 @@ export default class Session {
         button: $('#button'),
         face: $('#face'),
         hoverableElements: $('#button, .social-icon, #text'),
+        social: $('#social'),
         text: $('#text'),
         window: $(window)
       };
@@ -90,6 +91,7 @@ export default class Session {
 
   _firstQuoteSetup() {
     this._permanentPageElements.button.removeClass('unclicked');
+    this._visuals.bounceInSocialButtons();
 
     this._permanentPageElements.text.removeClass('first-round')
       .on('click', () => {

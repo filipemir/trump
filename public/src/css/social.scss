@@ -4,6 +4,10 @@
   position: absolute;
   padding: 0px 50px;
 
+  &.hidden {
+    display: none;
+  }
+
   .social-icon {
     fill: $primary;
     cursor:  pointer;
@@ -29,3 +33,5 @@
     }
   }
 }
+
+@import 'animations/bounce-in-up'

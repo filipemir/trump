@@ -13,13 +13,19 @@ export default class VisualEffects {
     return visuals;
   }
 
-  constructor({ audio, button, face, hoverableElements, text, window }) {
+  constructor({ audio, button, face, hoverableElements, social, text, window }) {
     this._audio = audio;
     this._button = button;
     this._face = face;
     this._hoverableElements = hoverableElements;
+    this._social = social;
     this._text = text;
     this._window = window;
+  }
+
+  bounceInSocialButtons() {
+    this._social.removeClass('hidden');
+    this._social.addClass('bounce-in-up');
   }
 
   glowFaceTillPlay() {
@@ -101,6 +107,7 @@ export default class VisualEffects {
   _makeSpaceBarPressable() {
     this._window.on('keydown keyup', (event) => {
       if (event.keyCode === 32) {
+        event.preventDefault();
         this._changeButtonActiveState();
       }
     })
