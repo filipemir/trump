@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import Quote from './quote';
 import VisualEffects from './visual-effects';
+import { updateTwitterButton } from './social';
 
 export default class Session {
 
@@ -129,6 +130,7 @@ export default class Session {
   _loadQuote() {
     if (this._quoteStash && this._quoteStash.length > 0) {
       this._presentQuote = this._quoteStash.shift();
+      updateTwitterButton(this._presentQuote.text)
     }
     this._getQuotes(1);
 
