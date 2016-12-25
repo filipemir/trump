@@ -1,3 +1,8 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
   background-attachment: fixed;
@@ -10,6 +15,9 @@ body {
   background-repeat:  no-repeat;
   font-family: 'Carter One', sans-serif;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 
   #content {
     max-width: 1200px;
