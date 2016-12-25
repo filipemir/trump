@@ -1,0 +1,57 @@
+#button {
+  background:  transparent;
+  border: none;
+  bottom:  30px;
+  cursor:  pointer;
+  fill: $primary;
+  left:  50%;
+  outline:  0;
+  position:  absolute;
+  transition:  all 0.2s;
+  width: 100px;
+
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+
+  &.unclicked {
+    animation: shake 4s ease 2s infinite;
+  }
+
+  &.active {
+    -moz-transform: translateX(-50%) scale(0.95);
+    -webkit-transform: translateX(-50%) scale(0.95);
+    -o-transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(0.95);
+
+    #face {
+      fill: $orange;
+    }
+  }
+
+  #face, #hair {
+    fill: $primary;
+    transition:  all 0.3s;
+  }
+
+  &.hover #face {
+    fill: $orange;
+  }
+
+  &.loading #face {
+    animation: glow 1s ease 0s infinite;
+  }
+}
+
+@media (max-width: $smallScreenWidth) {
+  #button {
+    width: 15%;
+    min-width: 60px;
+    bottom: 10px;
+  }
+}
+
+// Animations
+@import 'glow';
+@import 'shake';

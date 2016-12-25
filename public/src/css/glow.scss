@@ -1,0 +1,19 @@
+@keyframes glow {
+  0% 100% {
+    fill: $primary;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
+
+@-webkit-keyframes glow {
+  0%, 100% {
+    fill: $primary;
+  }
+
+  40%, 50%, 65% {
+    fill: $orange;
+  }
+}
