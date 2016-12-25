@@ -24,8 +24,10 @@ export default class VisualEffects {
   }
 
   bounceInSocialButtons() {
-    this._social.removeClass('hidden');
-    this._social.addClass('bounce-in-up');
+    this._audio.one('playing', () => {
+      this._social.removeClass('hidden');
+      this._social.addClass('bounce-in-up');
+    });
   }
 
   glowFaceTillPlay() {
