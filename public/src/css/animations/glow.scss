@@ -9,11 +9,11 @@
 }
 
 @-webkit-keyframes glow {
-  0%, 100% {
-    fill: $primary;
+  0%, 20%, 80% {
+    fill: $orange;
   }
 
-  40%, 50%, 65% {
-    fill: $orange;
+  50%, 100% {
+    fill: $primary;
   }
 }
