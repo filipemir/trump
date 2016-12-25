@@ -55,8 +55,8 @@ export default class VisualEffects {
 
   // ---------------------------------------------------------------------- //
 
-  _changeButtonActiveState() {
-    this._button.toggleClass('active');
+  _changeButtonActiveState(turnOn = null) {
+    this._button.toggleClass('active', turnOn);
   }
 
   _changeButtonLoadingState(turnOn = null) {
@@ -64,12 +64,19 @@ export default class VisualEffects {
   }
 
   _enableHoverables() {
-    this._hoverableElements.on('mouseover', function() {
+    this._hoverableElements.on('mouseover touchstart', function() {
       $(this).toggleClass('hover', true);
     })
 
     this._hoverableElements.on('mouseout', function() {
       $(this).toggleClass('hover', false);
+    })
+
+    this._hoverableElements.on('touchend', function() {
+      const test = () => {
+        $(this).toggleClass('hover', false);
+      }
+      setTimeout(test, 100);
     })
   }
 
@@ -99,15 +106,19 @@ export default class VisualEffects {
   }
 
   _makeButtonPressable() {
-    this._button.on('mousedown mouseup touchstart touchend', () => {
-      this._changeButtonActiveState();
+    this._button.on('mousedown touchstart', () => {
+      this._changeButtonActiveState(true);
+    });
+
+    this._button.on('mouseup touchend', () => {
+      this._changeButtonActiveState(false);
     });
   }
 
   _makeSpaceBarPressable() {
     this._window.on('keydown keyup', (event) => {
       if (event.keyCode === 32) {
-        event.preventDefault();
+        // event.preventDefault();
         this._changeButtonActiveState();
       }
     })
