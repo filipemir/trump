@@ -98,6 +98,9 @@ module.exports = function(grunt) {
     webpack: {
       default: {
         entry: `${paths.src.js}/index.js`,
+        externals: {
+          'webpack-runtime-config/fbAppId': process.env.FB_APP_ID
+        },
         output: {
           path: `${paths.temp.js}`,
           filename: 'trump.js'
