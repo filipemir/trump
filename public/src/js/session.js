@@ -5,7 +5,11 @@ import Social from './social';
 import VisualEffects from './visual-effects';
 
 export default class Session {
-
+  /**
+   * Static method used to create and initialize a new session.
+   *
+   * @return {Session}
+   */
   static initialize() {
     const s = new Session(),
       pageElements = {
@@ -20,11 +24,11 @@ export default class Session {
         window: $(window)
       };
 
-    s._pageElements = pageElements;
-    s._getQuotes(s._quoteStashSize);
-    s._visuals = VisualEffects.setup(pageElements);
-    s.setupNewQuoteListeners();
-    s._social = Social.setup(pageElements);
+    s.pageElements = pageElements;
+    s.visuals = VisualEffects.setup(pageElements);
+    s.getQuotes()
+      .setupNewQuoteListeners();
+    s.social = Social.setup(pageElements);
 
     return s;
   }
@@ -32,78 +36,67 @@ export default class Session {
   /**
    * Creates a new Session instance
    *
+   * @param {Number} quoteStashSize
+   *  Number of quotes to cache in this._quoteStash array.
    * @constructor
    */
   constructor(quoteStashSize = 10) {
+    /**
+     * Object that stores the static page elements to be used throughout
+     * the various functions. Page elements are expected to be jQuery
+     * elements
+     *
+     * @property {Objects}
+     */
+    this.pageElements = {};
+
+    /**
+     * Reference to the class that controls the functionality of the
+     * sharing buttons
+     *
+     * @property {Social}
+     */
+    this.social = null;
+
+    /**
+     * Reference to the class that controls the visual effects and the
+     * associated listeners
+     *
+     * @property {VisualEffects}
+     */
+    this.visuals = null;
+
+    /**
+     * Stash of quote objects created from
+     *
+     * @private
+     * @property {Array}
+     */
     this._quoteStash = null;
+
+    /**
+     * Size of quote stash
+     *
+     * @private
+     * @property {Number}
+     */
     this._quoteStashSize = quoteStashSize;
-    this._pageElements = {};
+
+    /**
+     * Quote currently active
+     *
+     * @private
+     * @property {Quote}
+     */
     this._presentQuote = null;
-    this._requestPath = 'trumpism';
+
+    /**
+     * Number of rpesent round (i.e. how many quotes have been loaded)
+     *
+     * @private
+     * @property {Number}
+     */
     this._round = 0;
-    this._visuals = null;
-    this._social = null;
-  }
-
-  /**
-   * Plays a quote from the quote stash.
-   *
-   * @chainable
-   */
-  playQuote() {
-    if (!this._presentQuote || this._presentQuote.played) {
-      this._loadQuote();
-    }
-
-    const presentQuote = this._presentQuote;
-
-    if (presentQuote) {
-      presentQuote.play();
-      this._visuals.displayTextOnPlay(presentQuote.text);
-    }
-
-    return this;
-  }
-
-  newQuote() {
-    this._round++;
-
-    if (this._round === 1) {
-      this._firstQuoteSetup();
-    }
-
-    this._visuals.glowFaceTillPlay();
-    this.playQuote();
-  }
-
-  setupNewQuoteListeners() {
-    this._pageElements.button.on('click', () => {
-      this.newQuote();
-    })
-
-    $('#text.first-round').on('click', () => {
-      this.newQuote();
-    })
-
-    $(window).on('keydown', () => {
-      if (event.keyCode === 32) {
-        this.newQuote();
-      }
-    })
-  }
-
-  // -------------------------------------------------------------------------------------- //
-
-  _firstQuoteSetup() {
-    this._pageElements.button.removeClass('unclicked');
-    this._visuals.bounceInSocialButtons();
-
-    this._pageElements.text.removeClass('first-round')
-      .on('click', () => {
-        window.open(this._presentQuote.sourceUrl, "blank");
-      });
-
-    return this;
   }
 
   /**
@@ -112,15 +105,81 @@ export default class Session {
    * @param {Integer} num
    * @chainable
    */
-  _getQuotes(num) {
+  getQuotes(num = this._quoteStashSize) {
     $.ajax({
-      url: this._requestPath,
+      url: 'trumpism',
       type: 'GET',
       data: { num },
       success: (response) => {
         return this._stashQuotes(response);
       }
     });
+
+    return this;
+  }
+
+  /**
+   * Function for requesting a new quote. This is the function that
+   * starts the process whenever the user clicks the button or otherwise
+   * requests a new quote
+   *
+   * @chainable
+   */
+  newQuote() {
+    this._round++;
+
+    if (this._round === 1) {
+      this._firstQuoteSetup();
+    }
+
+    this.visuals.glowFaceTillPlay();
+    this._playQuote();
+
+    return
+  }
+
+  /**
+   * Setup the listeners that monitor for requests from the user for new quotes
+   *
+   * @chainable
+   */
+  setupNewQuoteListeners() {
+    // On button click:
+    this.pageElements.button.on('click', () => {
+      this.newQuote();
+    })
+
+    // On click of the page title, which is the text when the page loads:
+    $('#text.first-round').one('click', () => {
+      this.newQuote();
+    })
+
+    // On pressing the space bar:
+    $(window).on('keydown', () => {
+      if (event.keyCode === 32) {
+        this.newQuote();
+      }
+    })
+
+    return this;
+  }
+
+  // -------------------------------------------------------------------------------------- //
+
+  /**
+   * Function that takes acre of all the work that happens when the user first
+   * requests a new quote (e.g. first button click)
+   *
+   * @chainable
+   */
+  _firstQuoteSetup() {
+    this.pageElements.button.removeClass('unclicked');
+    this.visuals.bounceInSocialButtons();
+
+    this.pageElements.text.removeClass('first-round')
+      .on('click', () => {
+        window.open(this._presentQuote.sourceUrl, "blank");
+      });
 
     return this;
   }
@@ -134,9 +193,30 @@ export default class Session {
   _loadQuote() {
     if (this._quoteStash && this._quoteStash.length > 0) {
       this._presentQuote = this._quoteStash.shift();
-      this._social.update(this._presentQuote);
+      this.social.update(this._presentQuote);
     }
-    this._getQuotes(1);
+    this.getQuotes(1);
+
+    return this;
+  }
+
+  /**
+   * Plays present quote from the quote stash, if it hasn't been played,
+   * or loads and plays a new one if it has.
+   *
+   * @chainable
+   */
+  _playQuote() {
+    if (!this._presentQuote || this._presentQuote.played) {
+      this._loadQuote();
+    }
+
+    const presentQuote = this._presentQuote;
+
+    if (presentQuote) {
+      presentQuote.play();
+      this.visuals.displayTextOnPlay(presentQuote.text);
+    }
 
     return this;
   }
@@ -152,7 +232,7 @@ export default class Session {
     const quotes = this._quoteStash ? this._quoteStash : [];
 
     _.forEach(rawQuotes, (rawQuote, index) => {
-      const audioTag = this._pageElements.audio[0],
+      const audioTag = this.pageElements.audio[0],
         quoteArgs = _.defaults(rawQuote, { audioTag }),
         newQuote = new Quote(quoteArgs);
 
@@ -172,7 +252,7 @@ export default class Session {
    */
   _setup() {
     if (!this._quoteStash) {
-      this._getQuotes(this._quoteStashSize);
+      this.getQuotes(this._quoteStashSize);
     }
 
     return this;

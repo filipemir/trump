@@ -17,10 +17,44 @@ export default class Quote {
     text = required(),
     sourceUrl = required()
   }) {
+    /**
+     * Audio element on the page
+     *
+     * @private
+     * @property {HTMLNode}
+     */
     this.audioTag = audioTag;
+
+    /**
+     * URL of audio of quote
+     *
+     * @private
+     * @property {String}
+     */
     this.audioUrl = audioUrl;
+
+    /**
+     * Text of quote
+     *
+     * @private
+     * @property {String}
+     */
     this.text = text;
+
+    /**
+     * URL of source
+     *
+     * @private
+     * @property {String}
+     */
     this.sourceUrl = sourceUrl;
+
+    /**
+     * Boolen indicating whether or not quote was played
+     *
+     * @private
+     * @property {Boolean}
+     */
     this.played = false;
   }
 

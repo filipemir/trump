@@ -137,5 +137,4 @@ export default class VisualEffects {
       setTimeout(this._changeButtonLoadingState(false), 500)
     })
   }
-
 }
