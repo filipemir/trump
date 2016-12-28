@@ -9,22 +9,22 @@ module.exports = {
   dist: {
     rootDir: path.join(__dirname, 'public/dist'),
     js: path.join(__dirname, 'public/dist/js'),
-    css: path.join(__dirname, 'public/dist/css'),
-    img: path.join(__dirname, 'public/dist/img')
+    css: path.join(__dirname, 'public/dist/css')
   },
   src: {
     rootDir: path.join(__dirname, 'public/src'),
     js: path.join(__dirname, 'public/src/js'),
-    css: path.join(__dirname, 'public/src/css'),
-    img: path.join(__dirname, 'public/src/img')
+    css: path.join(__dirname, 'public/src/css')
+  },
+  static: {
+    rootDir: path.join(__dirname, 'public/static'),
+    aud: path.join(__dirname, 'public/static/aud'),
+    img: path.join(__dirname, 'public/static/img')
   },
   temp: {
     rootDir: path.join(__dirname, 'public/temp'),
     js: path.join(__dirname, 'public/temp/js'),
-    css: path.join(__dirname, 'public/temp/css'),
+    css: path.join(__dirname, 'public/temp/css')
   },
-  views: path.join(__dirname, '/app/views'),
-  s3: {
-    root: 's3.amazonaws.com/trump-says/'
-  }
+  views: path.join(__dirname, '/app/views')
 };
