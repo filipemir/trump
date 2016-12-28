@@ -40,6 +40,11 @@ export default class Quote {
     return this;
   }
 
+  /**
+   * Places the appropriate url as the audio tag's source
+   *
+   * @chainable
+   */
   load() {
     const audioTag = this.audioTag;
 
