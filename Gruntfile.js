@@ -39,6 +39,10 @@ module.exports = function(grunt) {
     },
 
     copy: {
+      css: {
+        src: `${paths.temp.css}/index.css`,
+        dest: `${paths.dist.css}/index.min.css`,
+      },
       js: {
         src: `${paths.temp.js}/trump.js`,
         dest: `${paths.dist.js}/trump.min.js`,
@@ -92,7 +96,7 @@ module.exports = function(grunt) {
 
     watch: {
       files: watchFiles,
-      tasks: ['eslint', 'webpack', 'copy:js', 'sass', 'cssmin']
+      tasks: ['eslint', 'webpack', 'copy:js', 'sass', 'copy:css']
     },
 
     webpack: {
@@ -128,7 +132,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-webpack');
 
-  grunt.registerTask('develop', ['eslint', 'clean', 'webpack', 'copy:js', 'sass', 'cssmin', 'express', 'watch']);
+  grunt.registerTask('develop', ['eslint', 'clean', 'webpack', 'copy:js', 'sass', 'copy:css', 'express', 'watch']);
   grunt.registerTask('default', 'develop');
   grunt.registerTask('db-seed', 'shell:seedDb');
   grunt.registerTask('db-drop', 'shell:dropDb');
