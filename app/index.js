@@ -16,6 +16,7 @@ app.set('views', paths.views);
 
 app.use(express.static(paths.dist.rootDir));
 app.use('/audio', express.static(paths.static.aud));
+app.use('/fonts', express.static(paths.static.fonts));
 app.use('/img', express.static(paths.static.img));
 app.use(favicon(`${paths.static.img}/face.png`));
 

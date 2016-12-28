@@ -19,6 +19,7 @@ module.exports = {
   static: {
     rootDir: path.join(__dirname, 'public/static'),
     aud: path.join(__dirname, 'public/static/aud'),
+    fonts: path.join(__dirname, 'public/static/fonts'),
     img: path.join(__dirname, 'public/static/img')
   },
   temp: {
