@@ -1,9 +1,9 @@
 <p align="center"><img src="https://raw.githubusercontent.com/filipemir/trump/master/public/src/img/face-orange.png" width="100px"></p>
 
 # The Best Words
-A look at a minuscule fraction of the many truly unbelievable things Donald Trump has said.
+A small sampling of Donald Trump's best words. Heavily inspired by [They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less discouraging project.
 
-### Local development steps
+### Local Development
 * Clone repository
 * Prepare local database:
   * [Install mongoDB](https://www.mongodb.com/download-center)
@@ -14,23 +14,16 @@ A look at a minuscule fraction of the many truly unbelievable things Donald Trum
   * Run `grunt db-seed` to seed your local database
   * Run `grunt develop`
 
-### Deployment steps:
-In order to deploy, you'll need to setup a hosted mongo database somewhere (I use [mLab](www.mlab.com)). Once you have set your hosted datbase up, you'll need to specify the environment variables below in whatever environment will be running the app in production. To run it locally in the production environment, insert the following in a `.env` file in the project's root:
+### Deployment
+In order to deploy, you'll need to setup a hosted mongo database somewhere (I use [mLab](www.mlab.com)). Once you have set your hosted database up, you'll need to specify the environment variables below in whatever environment will be running the app in production. To run it locally in the production environment, create a `.env` file in the project's root following this template:
 
 ```
 DB_LOCATION=<location of mongoDB in production, e.g. 'ds123456.mlab.com:23456'>
 DB_USER=<username to access DB>
 DB_PASSWORD=<password to access DB>
+FB_APP_ID=<id of facebook app, for sharing>
 ```
 
 Then seed your production database by running `grunt db-seed --env=production`.
-
-### To dos:
-* Move DB location to .env
-* Add ASCII banner at top of elements
-* Add share functionality
-* Add links to source
-* Add credits
-* Attempt to bring back curtain fade
 
 
