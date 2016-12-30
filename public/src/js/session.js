@@ -177,6 +177,7 @@ export default class Session {
     this.visuals.bounceInSocialButtons();
 
     this.pageElements.text.removeClass('first-round')
+      .off('click')
       .on('click', () => {
         window.open(this._presentQuote.sourceUrl, "blank");
       });
