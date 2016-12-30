@@ -136,5 +136,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'develop');
   grunt.registerTask('db-seed', 'shell:seedDb');
   grunt.registerTask('db-drop', 'shell:dropDb');
+  grunt.registerTask('db-reset', ['db-drop', 'db-seed']);
   grunt.registerTask('build', ['clean', 'webpack', 'uglify', 'sass', 'cssmin']);
 };
