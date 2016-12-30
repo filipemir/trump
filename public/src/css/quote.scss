@@ -22,13 +22,17 @@
     -webkit-transform: translateY(-50%) translateX(-50%);
     -o-transform: translateY(-50%) translateX(-50%);
 
-    // Each word is introduced separately, so this styling applies to individual words:
-    .word {
+    // Span applis to all "words" which can have class of "word" or "emoji"
+    // Distinction results from not wanting emojis to be italicized and shadowed.
+    span {
       margin-right: 10px;
       margin-left:  10px;
       display:  inline-block;
       // transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s, -moz-transform 1s, -o-transform 1s;
       transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s;
+    }
+
+    .word {
       text-shadow: 3px 3px $orange;
 
       // The skewing below italicizes the text. I used this approach because using 'font-style: italic'
@@ -41,11 +45,15 @@
       -o-transform: skewX(-20deg);
     }
 
+    .emoji {
+      transform: translateY(12%);
+    }
+
     &.hover .word {
       text-shadow: 6px 6px $orange;
     }
 
-    &.intro .word {
+    &.intro span {
       // This class is added to the words when they're first introduced, so that they seem to vaporize
       // in when the intro class is removed
       opacity: 0;
