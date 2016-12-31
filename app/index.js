@@ -13,8 +13,12 @@ const express = require('express'),
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
+
 app.use(express.static(paths.dist.rootDir));
-app.use(favicon(`${paths.src.img}/face.png`));
+app.use('/audio', express.static(paths.static.aud));
+app.use('/fonts', express.static(paths.static.fonts));
+app.use('/img', express.static(paths.static.img));
+app.use(favicon(`${paths.static.img}/face.png`));
 
 app.get('/', function(req, res) {
   res.render('index');
@@ -29,6 +33,10 @@ app.get('/trumpism', function(req, res) {
   }).catch((error) => {
     res.status(500).json({ error });
   });
+});
+
+app.use(function(req, res) {
+  res.redirect('/')
 });
 
 app.listen(port, hostName, function() {

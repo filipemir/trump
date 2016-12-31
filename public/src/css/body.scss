@@ -1,10 +1,12 @@
+@import 'fonts';
+
 html {
   height: 100%;
   overflow: hidden;
 }
 
 body {
-  background: url(https://s3.amazonaws.com/trump-says/trump-portrait-96dpi-1500px.jpg);
+  background: url(../img/trump-portrait.jpg);
   background-attachment: fixed;
   background-color: black;
   background-size: cover;
@@ -18,6 +20,7 @@ body {
   height: 100%;
   overflow: hidden;
   position: relative;
+  margin: 0;
 
   #content {
     max-width: 1200px;

@@ -3,3 +3,8 @@ node_modules/
 trumpisms
 public/dist/
 public/temp/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -1,4 +1,5 @@
-import $ from 'jquery'
+import $ from 'jquery';
+import { isEmoji } from './utils'
 
 export default class VisualEffects {
 
@@ -89,9 +90,10 @@ export default class VisualEffects {
 
     for (let i = 0; i < wordCount; i++) {
       const word = words[i],
-        delay = i * 1/wordCount;
+        delay = i * 1/wordCount,
+        classes = isEmoji(word) ? 'emoji' : 'word';
 
-      html += `<span class="word" style="transition-delay: ${delay}s;">${word}</span>`;
+      html += `<span class=${classes} style="transition-delay: ${delay}s;">${word}</span>`;
     }
 
     return html;
@@ -137,5 +139,4 @@ export default class VisualEffects {
       setTimeout(this._changeButtonLoadingState(false), 500)
     })
   }
-
 }
