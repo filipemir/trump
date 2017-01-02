@@ -7,8 +7,7 @@
   },
   "main": "app/index.js",
   "scripts": {
-    "start": "node app/index.js",
-    "postinstall": "grunt build"
+    "start": "grunt build && node app/index.js"
   },
   "repository": {
     "type": "git",
