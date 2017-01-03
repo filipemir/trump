@@ -232,6 +232,8 @@ export default class Session {
   _stashQuotes(rawQuotes) {
     const quotes = this._quoteStash ? this._quoteStash : [];
 
+    rawQuotes = _.shuffle(rawQuotes);
+
     _.forEach(rawQuotes, (rawQuote, index) => {
       const audioTag = this.pageElements.audio[0],
         quoteArgs = _.defaults(rawQuote, { audioTag }),

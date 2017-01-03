@@ -91,7 +91,7 @@ export default class VisualEffects {
     for (let i = 0; i < wordCount; i++) {
       const word = words[i],
         delay = i * 1/wordCount,
-        classes = isEmoji(word) ? 'emoji' : 'word';
+        classes = isEmoji(word.replace('.', '')) ? 'emoji' : 'word';
 
       html += `<span class=${classes} style="transition-delay: ${delay}s;">${word}</span>`;
     }
