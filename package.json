@@ -38,9 +38,7 @@
     "pug": "2.0.0-beta4",
     "serve-favicon": "2.3.0",
     "webpack": "1.13.2",
-    "webpack-dev-server": "1.15.1"
-  },
-  "devDependencies": {
+    "webpack-dev-server": "1.15.1",
     "grunt-contrib-eslint": "0.0.5",
     "grunt-contrib-watch": "1.0.0",
     "grunt-eslint": "19.0.0",
