@@ -8,3 +8,7 @@ public/temp/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+.DS_Store
+public/.DS_Store
+public/static/.DS_Store
+public/static/aud/.DS_Store
