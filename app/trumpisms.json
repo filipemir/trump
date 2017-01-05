@@ -105,7 +105,7 @@
     "audioUrl": "audio/greatest_jobs_president.mp3"
   },
   {
-    "text": "I would build a great wall. And nobody builds walls better than me, believe me.",
+    "text": "I would build a great wall. And nobody builds walls better than me, believe me. And I'll build them very inexpensively.",
     "date":"6/16/15",
     "location": "New York, NY",
     "sourceUrl": "https://youtu.be/apjNfkysjbM?t=40m20s",
@@ -131,5 +131,89 @@
     "location": "Good Morning Britain",
     "sourceUrl": "https://youtu.be/RYDYeQhbuJA?t=43s",
     "audioUrl": "audio/im_not_stupid.mp3"
+  },
+  {
+    "text": "I don't think I'm a divisive person. I'm a unifier.",
+    "date": "5/16/16",
+    "location": "Good Morning Britain",
+    "sourceUrl": "https://youtu.be/RYDYeQhbuJA?t=51s",
+    "audioUrl": "audio/unifier.mp3"
+  },
+  {
+    "text": "If she gets to pick her judges, nothing you can do folks. \n Although, the 2nd Amendment people, maybe there is, idk.",
+    "date": "8/9/16",
+    "location": "Wilmington, NC",
+    "sourceUrl": "https://youtu.be/neCW9RwwH6g?t=9s",
+    "audioUrl": "audio/2nd_amendment_people.mp3"
+  },
+  {
+    "text": "And the greatest builder is me. And I will build the greatest wall you have ever seen.",
+    "date": "5/9/15",
+    "location": "South Carolina Freedom Summit, Greensville, SC",
+    "sourceUrl": "https://youtu.be/5wq7Y0xVXzc?t=27m36s",
+    "audioUrl": "audio/greatest_builder.mp3"
+  },
+  {
+    "text": "If they ever get up there they're in trouble. Because there's no way to get down. Maybe a rope...",
+    "date": "8/19/15",
+    "location": "Derry, NH",
+    "sourceUrl": "https://youtu.be/Tk7n5RmTIdU?t=27m29s",
+    "audioUrl": "audio/maybe_a_rope.mp3"
+  },
+  {
+    "text": "I love the poorly educated.",
+    "date": "2/23/16",
+    "location": "NV",
+    "sourceUrl": "https://youtu.be/Vpdt7omPoa0?t=9s",
+    "audioUrl": "audio/poorly_educated.mp3"
+  },
+  {
+    "text": "I will absolutely apologize, sometime in the hopefully distant future, if I'm ever wrong.",
+    "date": "9/12/15",
+    "location": "The Tonight Show Starring Jimmy Fallon",
+    "sourceUrl": "https://youtu.be/VlQctpKN3Hc?t=4m44s",
+    "audioUrl": "audio/i_will_apologize.mp3"
+  },
+  {
+    "text": "Part of the beauty of me is that I'm very rich.",
+    "date": "3/11",
+    "location": "Good Morning America",
+    "sourceUrl": "https://youtu.be/6o5GxmMIbok?t=1m29s",
+    "audioUrl": "audio/part_of_the_beauty.mp3"
+  },
+  {
+    "text": "I'm not a believer in man-made global warming. It could be warming and it's going to start to cool at some point.",
+    "date": "9/21/15",
+    "location": "Hugh Hewitt Show",
+    "sourceUrl": "https://youtu.be/rfrpSzEPx7I?t=10s",
+    "audioUrl": "audio/it_could_be_warming.mp3"
+  },
+  {
+    "text": "I believe there's weather. I believe there's change. And I believe it goes up and it goes down and it goes up again.",
+    "date": "9/21/15",
+    "location": "Hugh Hewitt Show",
+    "sourceUrl": "https://youtu.be/rfrpSzEPx7I?t=55s",
+    "audioUrl": "audio/weather_goes_up_and_down.mp3"
+  },
+  {
+    "text": "You can’t use hairspray because hairspray is going to affect the ozone.",
+    "date": "12/30/15",
+    "location": "Hilton Head, SC",
+    "sourceUrl": "https://youtu.be/0nvRvo6efPE?t=41m07s",
+    "audioUrl": "audio/no_hairspray.mp3"
+  },
+  {
+    "text": "I want to use hairspray. They say don’t use hairspray, it’s bad for the ozone.",
+    "date": "12/30/15",
+    "location": "Hilton Head, SC",
+    "sourceUrl": "https://youtu.be/0nvRvo6efPE?t=41m43s",
+    "audioUrl": "audio/i_want_hairspray.mp3"
+  },
+  {
+    "text": "So Obama’s talking about all of this with the global warming and the — a lot of it’s a hoax, it’s a hoax.",
+    "date": "12/30/15",
+    "location": "Hilton Head, SC",
+    "sourceUrl": "https://youtu.be/0nvRvo6efPE?t=42m50s",
+    "audioUrl": "audio/a_lot_of_hoax.mp3"
   }
 ]
