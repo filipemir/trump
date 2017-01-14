@@ -6,10 +6,15 @@ export default class VisualEffects {
   static setup(args) {
     const visuals = new VisualEffects(args);
 
-    visuals.displayText('Shit Trump Says')
     visuals._enableHoverables();
     visuals._makeButtonPressable();
     visuals._makeSpaceBarPressable();
+    setTimeout(
+      () => {
+        visuals.displayText("The Best Words");
+      },
+      250
+    );
 
     return visuals;
   }

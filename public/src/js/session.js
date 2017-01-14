@@ -40,7 +40,7 @@ export default class Session {
    *  Number of quotes to cache in this._quoteStash array.
    * @constructor
    */
-  constructor(quoteStashSize = 10) {
+  constructor(quoteStashSize = 1) {
     /**
      * Object that stores the static page elements to be used throughout
      * the various functions. Page elements are expected to be jQuery

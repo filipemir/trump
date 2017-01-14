@@ -24,7 +24,7 @@ export default class Social {
   _fbShare() {
     const fbUiParams = {
       method: 'share',
-      href: 'http://the-best-words.herokuapp.com/',
+      href: 'http://the-best-words.com/',
       hashtag: '#shittrumpsays',
       quote: `"${this._presentQuote.text}" - Donald J. Trump`,
       mobile_iframe: true
