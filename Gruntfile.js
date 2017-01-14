@@ -103,7 +103,8 @@ module.exports = function(grunt) {
       default: {
         entry: `${paths.src.js}/index.js`,
         externals: {
-          'webpack-runtime-config/fbAppId': process.env.FB_APP_ID
+          'webpack-runtime-config/fbAppId': process.env.FB_APP_ID,
+          'webpack-runtime-config/gaTrackingId': `var '${process.env.GA_TRACKING_ID}'`
         },
         output: {
           path: `${paths.temp.js}`,

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import loadGoogleAnalytics from './ga';
 import Quote from './quote';
 import Social from './social';
 import VisualEffects from './visual-effects';
@@ -29,6 +30,7 @@ export default class Session {
     s.getQuotes()
       .setupNewQuoteListeners();
     s.social = Social.setup(pageElements);
+    loadGoogleAnalytics();
 
     return s;
   }
