@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/filipemir/trump/master/public/src/static/img/face-orange.png" width="100px">
+    <img src="https://raw.githubusercontent.com/filipemir/trump/master/public/static/img/face-orange.png" width="100px">
 </p>
 
 # The Best Words
