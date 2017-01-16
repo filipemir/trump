@@ -3,7 +3,7 @@
 </p>
 
 # The Best Words
-A small sampling of Donald Trump's best words. See it live at [www.the-best-words.com](www.the-best-words.com).
+A small sampling of Donald Trump's best words. See it live at [the-best-words.com](http://www.the-best-words.com).
 Heavily inspired by [They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less discouraging
 project.
 
