@@ -3,8 +3,10 @@
 </p>
 
 # The Best Words
-A small sampling of Donald Trump's best words. See it live at [the-best-words.com](http://www.the-best-words.com).
-Heavily inspired by [They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less discouraging
+See project live at [the-best-words.com](http://www.the-best-words.com).
+
+A small sampling of Donald Trump's best words. Heavily inspired by (and indebted to)
+[They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less depressing
 project.
 
 ### Local Development
@@ -32,5 +34,3 @@ GA_TRACKING_ID=<Google Analytics tracking ID>
 ```
 
 Then seed your production database by running `grunt db-seed --env=production`.
-
-
