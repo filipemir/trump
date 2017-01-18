@@ -1,6 +1,5 @@
 .env
 node_modules/
-trumpisms
 public/dist/
 public/temp/
 
@@ -8,6 +7,8 @@ public/temp/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Mac files
 .DS_Store
 public/.DS_Store
 public/static/.DS_Store
