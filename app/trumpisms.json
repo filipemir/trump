@@ -439,5 +439,40 @@
     "location": "Dallas, TX",
     "sourceUrl": "https://youtu.be/DnnSb0nOW6s?t=22m41s",
     "audioUrl": "audio/nothing_to_say.mp3"
+  },
+  {
+    "text": "I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things.",
+    "date": "5/16/16",
+    "location": "MSNBC's Morning Joe",
+    "sourceUrl": "https://youtu.be/y2lBz0532wU?t=22s",
+    "audioUrl": "audio/very_good_brain.mp3"
+  },
+  {
+    "text": "And I was a good student. \n I understand things. \n I comprehend very well, ok? \n Better than, I think, almost anybody.",
+    "date": "2/8/17",
+    "location": "Washington, DC",
+    "sourceUrl": "https://www.youtube.com/watch?v=u3zKEoTbwU8&t=485s",
+    "audioUrl": "audio/better_than_anybody.mp3"
+  },
+  {
+    "text": "And then they say: \n 'Is Donald Trump an intellectual?' \n Trust me! I'm like a smart person.",
+    "date": "1/22/17",
+    "location": "CIA Headquarters",
+    "sourceUrl": "https://youtu.be/4v-Ot25u7Hc?t=6m18s",
+    "audioUrl": "audio/like_a_smart_person.mp3"
+  },
+  {
+    "text": "I'm like a smart person. \n I don't have to be told the same thing in the same words every single day for the next eight years.",
+    "date": "12/11/16",
+    "location": "Fox News",
+    "sourceUrl": "https://youtu.be/V0d2rojo7js?t=3m9s",
+    "audioUrl": "audio/like_a_smart_person_v2.mp3"
+  },
+  {
+    "text": "I could've said: \n 'Mitt! Drop to your knees!' \n He would've dropped to his knees.",
+    "date": "5/3/17",
+    "location": "Maine",
+    "sourceUrl": "https://youtu.be/ocnAl8u7xVM?t=50s",
+    "audioUrl": "audio/mitts_knees.mp3"
   }
 ]
