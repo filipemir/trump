@@ -1,0 +1,8 @@
+version: "2"
+services:
+  web:
+    build: .
+    ports:
+      - "1234:3000"
+    env_file:
+      - .env
