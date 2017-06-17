@@ -3,6 +3,14 @@ services:
   web:
     build: .
     ports:
-      - "1234:3000"
+      - "3000:3000"
     env_file:
       - .env
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    volumes:
+      - /data/db:/data/db
+    ports:
+      - "27017:27017"

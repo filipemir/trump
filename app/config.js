@@ -13,7 +13,7 @@ module.exports = {
     },
     development: {
       location: 'localhost',
-      URI: 'mongodb://localhost/the-best-words',
+      URI: 'mongodb://mongo/the-best-words',
       db: 'the-best-words',
       collection: 'quotes',
     }

@@ -8,8 +8,7 @@ const express = require('express'),
   Quote = require('./models/quotes'),
   paths = require('../paths'),
   app = express(),
-  port = process.env.PORT || 3000,
-  hostName = process.env.NODE_ENV === 'development' ? 'localhost' : undefined;
+  port = process.env.PORT || 3000;
 
 app.set('view engine', 'pug');
 app.set('views', paths.views);
@@ -39,6 +38,6 @@ app.use(function(req, res) {
   res.redirect('/')
 });
 
-app.listen(port, hostName, function() {
+app.listen(port, function() {
   console.log(`Port ${port} is open for visitors`);
 });
