@@ -6,11 +6,19 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    links:
+    networks:
+      - trumpapp
+    depends_on:
       - mongo
   mongo:
     image: mongo
     volumes:
       - /data/db:/data/db
     ports:
-      - "27017:27017"
+      - '27018:27017'
+    networks:
+      - trumpapp
+
+networks:
+  trumpapp:
+    driver: bridge
