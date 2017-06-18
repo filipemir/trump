@@ -1,24 +1,24 @@
-version: "2"
+version: '2'
 services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  mongo-seed:
+    image: mongo
+    links:
+      - mongodb
+    volumes:
+      - ./app/quotes:/tmp
+    command:
+      'bash -c "mongoimport -h mongodb -d the-best-words -c quotes --file tmp/trumpisms.json --jsonArray"'
+
   web:
     build: .
     ports:
       - "3000:3000"
     env_file:
       - .env
-    networks:
-      - trumpapp
     depends_on:
-      - mongo
-  mongo:
-    image: mongo
-    volumes:
-      - /data/db:/data/db
-    ports:
-      - '27018:27017'
-    networks:
-      - trumpapp
-
-networks:
-  trumpapp:
-    driver: bridge
+      - mongodb

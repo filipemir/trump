@@ -11,10 +11,7 @@ module.exports = {
       pw: process.env.DB_PASSWORD
     },
     development: {
-      // For the URI below to work in local development,
-      // ensure that the following line is in the hosts
-      // file: 127.0.0.1    mongo
-      URI: 'mongodb://mongo/the-best-words',
+      URI: 'mongodb://mongodb/the-best-words',
       db: 'the-best-words',
       collection: 'quotes',
     }
