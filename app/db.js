@@ -2,8 +2,7 @@
 const config = require('./config.js'),
   mongoose = require('mongoose');
 
-const dbConfigs = config.db[process.env.NODE_ENV],
-  URI = dbConfigs.URI;
+const URI = config.db.URI;
 
 mongoose.connect(URI, function(err) {
   if (err) {

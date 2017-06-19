@@ -1,8 +1,7 @@
 const mongoose = require('../db'),
   config = require('../config');
 
-const dbConfig = config.db[process.env.NODE_ENV],
-  collectionName = dbConfig.collection,
+const collectionName = config.db.collection,
   quoteSchema = new mongoose.Schema({
     text: String,
     date: Date,

@@ -12,10 +12,7 @@ module.exports = function(grunt) {
   const pkg = grunt.file.readJSON('package.json'),
     envOption = _.includes(['development', 'production'], grunt.option('env')) ? grunt.option('env') : null,
     env = envOption || process.env.NODE_ENV || 'development',
-    dbConfig = config.db[env],
-    mongoUser = dbConfig.user ? `-u  ${dbConfig.user}`: '',
-    mongoPw = dbConfig.pw ? `-p  ${dbConfig.pw}`: '',
-    mongoCredentials = [mongoUser, mongoPw].join(' '),
+    dbConfig = config.db,
     server = grunt.file.readJSON('package.json').main,
     watchFiles = [
       `${paths.appDir}/**/*.js`,
@@ -79,10 +76,10 @@ module.exports = function(grunt) {
 
     shell: {
       dropDb: {
-        command: `mongo ${dbConfig.location}/${dbConfig.db} ${mongoCredentials} --eval "db.dropDatabase()"`
+        command: `mongo ${dbConfig.location}/${dbConfig.db} --eval "db.dropDatabase()"`
       },
       seedDb: {
-        command: `mongoimport -h ${dbConfig.location} -d ${dbConfig.db} -c ${dbConfig.collection} ${mongoCredentials} --file ${config.db.seeder} --jsonArray`
+        command: `mongoimport -h ${dbConfig.location} -d ${dbConfig.db} -c ${dbConfig.collection} --file ${dbConfig.seeder} --jsonArray`
       }
     },
 
