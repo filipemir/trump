@@ -1,5 +1,7 @@
 FROM node:boron
 
+ENV IS_DOCKER=true
+
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
 

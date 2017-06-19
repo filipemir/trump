@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   rootDir: __dirname,
   appDir: path.join(__dirname, '/app'),
+  quotesDir: path.join(__dirname, '/app', 'quotes'),
   nodeModules: path.join(__dirname, '/node_modules'),
   grunt: path.join(__dirname, '/grunt'),
   public: path.join(__dirname, '/public'),
