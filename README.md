@@ -9,4 +9,4 @@ A small sampling of Donald Trump's best words. Heavily inspired by (and indebted
 [They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less depressing
 project.
 
-Local dev steps [here](localdev.md).
+Local dev steps [here](LOCALDEV.md).
