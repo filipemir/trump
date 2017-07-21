@@ -10,8 +10,6 @@ module.exports = function(grunt) {
   timeGrunt(grunt);
 
   const pkg = grunt.file.readJSON('package.json'),
-    envOption = _.includes(['development', 'production'], grunt.option('env')) ? grunt.option('env') : null,
-    env = envOption || process.env.NODE_ENV || 'development',
     dbConfig = config.db,
     server = grunt.file.readJSON('package.json').main,
     watchFiles = [
