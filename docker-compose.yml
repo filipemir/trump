@@ -1,14 +1,14 @@
 version: '2'
 services:
   mongodb:
-    image: mongo
+    image: mongo:3.5.10
     networks:
       - trumpapp
     ports:
       - "27027:27017"
 
   mongo-seed:
-    image: mongo
+    image: mongo:3.5.10
     networks:
       - trumpapp
     links:
