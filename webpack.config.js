@@ -43,6 +43,7 @@ module.exports = {
   output: {
     filename: '[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: isDev ? '/' : '/trump/'
   },
   devServer: {
     writeToDisk: true,
