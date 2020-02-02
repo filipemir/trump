@@ -51,7 +51,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new PrettierPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.pug'

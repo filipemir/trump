@@ -1,6 +1,4 @@
-import "../styles";
+import "../styles/index.scss";
+import Session from "./session";
 
-import Quotes from "../quotes";
-
-
-
+Session.initialize();
