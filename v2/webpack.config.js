@@ -5,7 +5,8 @@ const path = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
     CopyPlugin = require('copy-webpack-plugin'),
-    PrettierPlugin = require("prettier-webpack-plugin");
+    PrettierPlugin = require("prettier-webpack-plugin"),
+    webpack = require("webpack");
 
 module.exports = {
   entry: './src/js/index.js',
@@ -52,6 +53,9 @@ module.exports = {
   },
   plugins: [
     // new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      GA_TRACKING_ID: JSON.stringify("UA-90377084-1")
+    }),
     new PrettierPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.pug'

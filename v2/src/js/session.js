@@ -1,11 +1,14 @@
 import $ from "jquery";
 import _ from "lodash";
-// import loadGoogleAnalytics from "./ga";
+import loadGoogleAnalytics from "./ga";
 import Quote from "./quote";
-// import Social from "./social";
+import Social from "./social";
 import VisualEffects from "./visual-effects";
 
-import quotes from "../quotes";
+/**
+ * @typedef {array}
+ */
+import QUOTES from "../quotes";
 
 export default class Session {
   /**
@@ -19,7 +22,6 @@ export default class Session {
         audio: $("audio"),
         button: $("#button"),
         face: $("#face"),
-        fb: $("#fb-link"),
         hoverableElements: $("#button, .social-icon, #text"),
         social: $("#social"),
         text: $("#text"),
@@ -29,8 +31,8 @@ export default class Session {
 
     s.pageElements = pageElements;
     s.visuals = VisualEffects.setup(pageElements);
-    s.getQuotes().setupNewQuoteListeners();
-    // s.social = Social.setup(pageElements);
+    s.loadQuotes().setupListeners();
+    s.social = Social.setup(pageElements);
     loadGoogleAnalytics();
 
     return s;
@@ -39,17 +41,15 @@ export default class Session {
   /**
    * Creates a new Session instance
    *
-   * @param {Number} quoteStashSize
-   *  Number of quotes to cache in this._quoteStash array.
    * @constructor
    */
-  constructor(quoteStashSize = 1) {
+  constructor() {
     /**
      * Object that stores the static page elements to be used throughout
      * the various functions. Page elements are expected to be jQuery
      * elements
      *
-     * @property {Objects}
+     * @property {Object}
      */
     this.pageElements = {};
 
@@ -75,15 +75,7 @@ export default class Session {
      * @private
      * @property {Array}
      */
-    this._quoteStash = quotes;
-
-    /**
-     * Size of quote stash
-     *
-     * @private
-     * @property {Number}
-     */
-    this._quoteStashSize = quoteStashSize;
+    this._quoteStash = [];
 
     /**
      * Quote currently active
@@ -108,15 +100,18 @@ export default class Session {
    * @param {Integer} num
    * @chainable
    */
-  getQuotes(num = this._quoteStashSize) {
-    $.ajax({
-      url: "trumpism",
-      type: "GET",
-      data: { num },
-      success: response => {
-        return this._stashQuotes(response);
-      }
+  loadQuotes(num = this._quoteStashSize) {
+    const quotes = this._quoteStash ? this._quoteStash : [];
+
+    QUOTES.forEach(q => {
+      const audioTag = this.pageElements.audio[0],
+        quoteArgs = _.defaults(q, { audioTag }),
+        newQuote = new Quote(quoteArgs);
+
+      quotes.push(newQuote);
     });
+
+    this._quoteStash = quotes;
 
     return this;
   }
@@ -138,7 +133,7 @@ export default class Session {
     this.visuals.glowFaceTillPlay();
     this._playQuote();
 
-    return;
+    return this;
   }
 
   /**
@@ -146,7 +141,7 @@ export default class Session {
    *
    * @chainable
    */
-  setupNewQuoteListeners() {
+  setupListeners() {
     // On button click:
     this.pageElements.button.on("click", () => {
       this.newQuote();
@@ -170,7 +165,7 @@ export default class Session {
   // -------------------------------------------------------------------------------------- //
 
   /**
-   * Function that takes acre of all the work that happens when the user first
+   * Function that takes care of all the work that happens when the user first
    * requests a new quote (e.g. first button click)
    *
    * @chainable
@@ -197,10 +192,10 @@ export default class Session {
    */
   _loadQuote() {
     if (this._quoteStash && this._quoteStash.length > 0) {
-      this._presentQuote = this._quoteStash.shift();
+      const i = Math.floor(Math.random() * Math.floor(this._quoteStash.length));
+      this._presentQuote = this._quoteStash[i];
       this.social.update(this._presentQuote);
     }
-    this.getQuotes(1);
 
     return this;
   }
@@ -221,45 +216,6 @@ export default class Session {
     if (presentQuote) {
       presentQuote.play();
       this.visuals.displayTextOnPlay(presentQuote.text);
-    }
-
-    return this;
-  }
-
-  /**
-   * Loops through an array of raw quotes (as received from service),
-   * creates a Quote object for each, and adds them to the log stash
-   *
-   * @param {Array} rawQuotes
-   * @chainable
-   */
-  _stashQuotes(rawQuotes) {
-    const quotes = this._quoteStash ? this._quoteStash : [];
-
-    rawQuotes = _.shuffle(rawQuotes);
-
-    _.forEach(rawQuotes, (rawQuote, index) => {
-      const audioTag = this.pageElements.audio[0],
-        quoteArgs = _.defaults(rawQuote, { audioTag }),
-        newQuote = new Quote(quoteArgs);
-
-      quotes.push(newQuote);
-    });
-
-    this._quoteStash = quotes;
-
-    return this;
-  }
-
-  /**
-   * Starts the intialization of a session by making the request for
-   * quotes and initializing the stash
-   *
-   * @chainable
-   */
-  _setup() {
-    if (!this._quoteStash) {
-      this.getQuotes(this._quoteStashSize);
     }
 
     return this;

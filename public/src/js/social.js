@@ -1,15 +1,14 @@
-import required from './required';
 import fbAppId from 'webpack-runtime-config/fbAppId';
 
 export default class Social {
-  static setup(pageElements = required()) {
+  static setup(pageElements) {
     const s = new Social(pageElements);
     s._loadFBApi();
 
     return s;
   }
 
-  constructor(pageElements = required()) {
+  constructor(pageElements) {
     this._presentQuote = null;
     this._pageElements = pageElements;
   }

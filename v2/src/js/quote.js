@@ -1,5 +1,3 @@
-import required from "./required";
-
 export default class Quote {
   /**
    * Creates a new quote instance
@@ -11,12 +9,7 @@ export default class Quote {
    *  @params {String} text
    *    Text of quote
    */
-  constructor({
-    audioTag = required(),
-    audioUrl = required(),
-    text = required(),
-    sourceUrl = required()
-  }) {
+  constructor({ audioTag, audioUrl, text, sourceUrl }) {
     /**
      * Audio element on the page
      *

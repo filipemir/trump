@@ -1,5 +1,3 @@
-import gaTrackingId from "webpack-runtime-config/gaTrackingId";
-
 export default function loadGoogleAnalytics() {
   /* eslint-disable */
   (function(i, s, o, g, r, a, m) {
@@ -22,7 +20,7 @@ export default function loadGoogleAnalytics() {
     "ga"
   );
 
-  ga("create", gaTrackingId, "auto");
+  ga("create", GA_TRACKING_ID, "auto");
   ga("send", "pageview");
   /*eslint-enable */
 }
