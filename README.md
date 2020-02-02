@@ -11,5 +11,5 @@ project. See it live at [the-best-words.com](http://www.the-best-words.com).
 
 ```bash
 yarn i
-yarn watch
+yarn start
 ```
