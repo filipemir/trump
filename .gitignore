@@ -2,6 +2,7 @@
 node_modules/
 public/dist/
 public/temp/
+.idea
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
