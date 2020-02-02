@@ -40,8 +40,7 @@ module.exports = {
   devtool: isDev ? "source-map" : false,
   output: {
     filename: '[hash].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: isDev ? '/' : '/trump/'
+    path: path.resolve(__dirname, 'dist')
   },
   devServer: {
     contentBase: './dist',
