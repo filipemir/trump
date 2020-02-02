@@ -2,18 +2,44 @@ const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     MiniCssExtractPlugin = require("mini-css-extract-plugin"),
     postcssPresetEnv = require('postcss-preset-env'),
-    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
     CopyPlugin = require('copy-webpack-plugin'),
     PrettierPlugin = require("prettier-webpack-plugin"),
-    webpack = require("webpack")
+    webpack = require("webpack"),
+    MinifyPlugin = require("babel-minify-webpack-plugin");
 
 require('dotenv').config();
 
+const isDev = !process.env.ENV || process.env.ENV === "development",
+  plugins = [
+    new webpack.DefinePlugin({
+      GA_TRACKING_ID: JSON.stringify(process.env.GA_TRACKING_ID),
+      SITE_URL: JSON.stringify(process.env.SITE_URL)
+    }),
+    new PrettierPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.pug'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[hash].css'
+    }),
+    new FaviconsWebpackPlugin('./src/img/face.png'),
+    new CopyPlugin([
+      { from: './src/audio' },
+    ])
+  ],
+  postCssLoaderPlugins = [postcssPresetEnv()];
+
+if (!isDev) {
+  plugins.push(new MinifyPlugin());
+
+  postCssLoaderPlugins.push(require('cssnano')());
+}
+
 module.exports = {
   entry: './src/js/index.js',
-  mode: 'development',
-  devtool: "source-map",    
+  mode: process.env.ENV || "development",
+  devtool: isDev ? "source-map" : false,
   output: {
     filename: '[hash].js',
     path: path.resolve(__dirname, 'dist'),
@@ -48,14 +74,14 @@ module.exports = {
         test: /\.(s)?css$/,
         use: [
             MiniCssExtractPlugin.loader,
-            { loader: "css-loader", options: { sourceMap: true } },
+            { loader: "css-loader", options: { sourceMap: isDev } },
             {
                 loader: 'postcss-loader', options: {
-                    sourceMap: true,
-                    plugins: () => [postcssPresetEnv()]
+                    sourceMap: isDev,
+                    plugins: postCssLoaderPlugins
                 }
             },
-            { loader: "sass-loader", options: { sourceMap: true } },
+            { loader: "sass-loader", options: { sourceMap: isDev } },
         ]
     },
     {
@@ -69,22 +95,5 @@ module.exports = {
     }
     ]
   },
-  plugins: [
-    // new CleanWebpackPlugin(),
-    new webpack.DefinePlugin({
-      GA_TRACKING_ID: JSON.stringify(process.env.GA_TRACKING_ID),
-      SITE_URL: JSON.stringify(process.env.SITE_URL)
-    }),
-    new PrettierPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.pug'
-    }),
-    new MiniCssExtractPlugin({
-        filename: '[hash].css'
-    }),
-    new FaviconsWebpackPlugin('./src/img/face.png'),
-    new CopyPlugin([
-      { from: './src/audio' },
-    ])
-  ]
+  plugins
 };
