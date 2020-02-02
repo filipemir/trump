@@ -1,5 +1,4 @@
 import $ from "jquery";
-import _ from "lodash";
 import loadGoogleAnalytics from "./ga";
 import Quote from "./quote";
 import Social from "./social";
@@ -105,7 +104,7 @@ export default class Session {
 
     QUOTES.forEach(q => {
       const audioTag = this.pageElements.audio[0],
-        quoteArgs = _.defaults(q, { audioTag }),
+        quoteArgs = { ...q, audioTag },
         newQuote = new Quote(quoteArgs);
 
       quotes.push(newQuote);
