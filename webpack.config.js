@@ -5,12 +5,14 @@ const path = require('path'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
     PrettierPlugin = require("prettier-webpack-plugin"),
     webpack = require("webpack"),
-    MinifyPlugin = require("babel-minify-webpack-plugin");
+    MinifyPlugin = require("babel-minify-webpack-plugin"),
+    { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 require('dotenv').config();
 
 const isDev = !process.env.ENV || process.env.ENV === "development",
   plugins = [
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       GA_TRACKING_ID: JSON.stringify(process.env.GA_TRACKING_ID),
       SITE_URL: JSON.stringify(process.env.SITE_URL)

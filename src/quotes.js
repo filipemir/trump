@@ -535,7 +535,7 @@ export default [
         id: 'on_a_stretcher',
         audio: on_a_stretcher,
         text:
-            "You know what they used to to guys like when they were in a place like this? They'd be carried out on a stretcher, folks.",
+            "You know what they used to do to guys like that when they were in a place like this? They'd be carried out on a stretcher, folks.",
         date: '2/22/16',
         location: 'Las Vegas, NV',
         sourceUrl: 'https://youtu.be/FToO5gLmkak?t=2h9m55s'
