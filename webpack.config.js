@@ -3,7 +3,6 @@ const path = require('path'),
     MiniCssExtractPlugin = require("mini-css-extract-plugin"),
     postcssPresetEnv = require('postcss-preset-env'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
-    CopyPlugin = require('copy-webpack-plugin'),
     PrettierPlugin = require("prettier-webpack-plugin"),
     webpack = require("webpack"),
     MinifyPlugin = require("babel-minify-webpack-plugin");
@@ -23,10 +22,7 @@ const isDev = !process.env.ENV || process.env.ENV === "development",
     new MiniCssExtractPlugin({
       filename: '[hash].css'
     }),
-    new FaviconsWebpackPlugin('./src/img/face.png'),
-    new CopyPlugin([
-      { from: './src/audio' },
-    ])
+    new FaviconsWebpackPlugin('./src/img/face.png')
   ],
   postCssLoaderPlugins = [postcssPresetEnv()];
 
@@ -46,7 +42,6 @@ module.exports = {
     publicPath: isDev ? '/' : '/trump/'
   },
   devServer: {
-    writeToDisk: true,
     contentBase: './dist',
   },
   module: {
@@ -86,7 +81,7 @@ module.exports = {
         ]
     },
     {
-        test: /\.(woff(2)?|ttf|eot|svg|png|jp(e)?g)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(mp3|woff(2)?|ttf|eot|svg|png|jp(e)?g)(\?v=\d+\.\d+\.\d+)?$/,
         use: {
             loader: "file-loader",
             options: {
