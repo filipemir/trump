@@ -3,7 +3,8 @@ const path = require('path'),
     MiniCssExtractPlugin = require("mini-css-extract-plugin"),
     postcssPresetEnv = require('postcss-preset-env'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
-    FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+    FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
+  CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -13,6 +14,7 @@ module.exports = {
     filename: '[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },devServer: {
+      writeToDisk: true,
          contentBase: './dist',
        },
   module: {
@@ -54,6 +56,9 @@ module.exports = {
     new MiniCssExtractPlugin({
         filename: '[hash].css'
     }),
-    new FaviconsWebpackPlugin('./src/img/face.png')
+    new FaviconsWebpackPlugin('./src/img/face.png'),
+    new CopyPlugin([
+      { from: './src/audio' },
+    ])
   ]
 };
