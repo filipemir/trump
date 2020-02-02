@@ -6,7 +6,9 @@ const path = require('path'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
     CopyPlugin = require('copy-webpack-plugin'),
     PrettierPlugin = require("prettier-webpack-plugin"),
-    webpack = require("webpack");
+    webpack = require("webpack")
+
+require('dotenv').config();
 
 module.exports = {
   entry: './src/js/index.js',
@@ -54,7 +56,8 @@ module.exports = {
   plugins: [
     // new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      GA_TRACKING_ID: JSON.stringify("UA-90377084-1")
+      GA_TRACKING_ID: JSON.stringify(process.env.GA_TRACKING_ID),
+      SITE_URL: JSON.stringify(process.env.SITE_URL)
     }),
     new PrettierPlugin(),
     new HtmlWebpackPlugin({

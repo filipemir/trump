@@ -19,7 +19,7 @@ export default class Social {
     const baseUrl = "https://twitter.com/intent/tweet",
       text = this._presentQuote.text,
       textURI = encodeURIComponent(`"${text}" @realDonaldTrump`),
-      urlURI = encodeURIComponent("http://the-best-words.com/"),
+      urlURI = encodeURIComponent(SITE_URL),
       hashtagsQuery = ["bestwords", "shittrumpsays"].join(","),
       href = `${baseUrl}?text=${textURI}&url=${urlURI}&hashtags=${hashtagsQuery}`;
 

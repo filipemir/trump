@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/filipemir/trump/issues"
   },
-  "homepage": "https://github.com/filipemir/trump#readme",
+  "homepage": "https://github.com/filipemir/trump",
   "dependencies": {
     "babel-core": "6.14.0",
     "babel-loader": "6.2.5",
