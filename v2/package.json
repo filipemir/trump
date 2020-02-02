@@ -1,0 +1,40 @@
+{
+  "name": "the-best-words",
+  "version": "3.0.0",
+  "description": "Trump's Best Words",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipemir/trump.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipemir/trump/issues"
+  },
+  "homepage": "https://github.com/filipemir/trump#readme",
+  "dependencies": {
+    "lodash": "4.17.15"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "3.0.0",
+    "css-loader": "3.4.2",
+    "favicons-webpack-plugin": "2.1.0",
+    "file-loader": "5.0.2",
+    "html-webpack-plugin": "3.2.0",
+    "html-webpack-pug-plugin": "2.0.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "node-sass": "4.13.1",
+    "postcss-loader": "3.0.0",
+    "postcss-preset-env": "6.7.0",
+    "pug": "2.0.4",
+    "pug-loader": "2.4.0",
+    "sass-loader": "8.0.2",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.10.2"
+  }
+}

@@ -1,0 +1,37 @@
+#social {
+  box-sizing: border-box;
+  bottom: 18px;
+  position: absolute;
+  padding: 0px 50px;
+
+  &.hidden {
+    display: none;
+  }
+
+  .social-icon {
+    fill: $primary;
+    cursor:  pointer;
+    height: 30px;
+    margin: 30px 0px;
+    transition: all 0.2s;
+    display: block;
+
+    &.hover {
+      fill: $orange;
+    }
+  }
+}
+
+@media (max-width: $smallScreenWidth) {
+  #social {
+    bottom: 0;
+    padding: 0px 20px;
+
+    .social-icon {
+      height: 25px;
+      margin: 20px 0px;
+    }
+  }
+}
+
+@import 'animations/bounce-in-up'
