@@ -1,14 +1,19 @@
 {
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "env": {
-    "node": true
+    "node": false,
+    "browser": true,
+  },
+  "globals": {
+    "Promise": true,
+    "SITE_URL": true
   },
   "rules": {
     "arrow-body-style": ["error", "always"],
-    "arrow-parens": ["error", "always"],
     "arrow-spacing": "error",
     "block-scoped-var": "error",
     "block-spacing": "error",
@@ -34,6 +39,7 @@
     "no-useless-computed-key": "error",
     "no-undef": "error",
     "no-unused-vars": ["error", { "args": "none" }],
+    "no-var": "error",
     "no-whitespace-before-property": "error",
     "object-curly-spacing": ["error", "always"],
     "prefer-const": "error",

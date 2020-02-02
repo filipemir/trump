@@ -1,9 +1,9 @@
 export default class Social {
-  static setup(pageElements = required()) {
+  static setup(pageElements) {
     return new Social(pageElements);
   }
 
-  constructor(pageElements = required()) {
+  constructor(pageElements) {
     this._presentQuote = null;
     this._pageElements = pageElements;
   }
