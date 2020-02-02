@@ -1,16 +1,5 @@
-.env
 node_modules/
-public/dist/
-public/temp/
-.idea
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
-# Mac files
+dist/
 .DS_Store
-public/.DS_Store
-public/static/.DS_Store
-public/static/aud/.DS_Store
+.idea
+trump.iml
