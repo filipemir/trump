@@ -8,7 +8,7 @@ const path = require('path'),
     PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/js/index.js',
   mode: 'development',
   devtool: "source-map",    
   output: {
