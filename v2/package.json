@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/filipemir/trump#readme",
   "dependencies": {
-    "lodash": "4.17.15"
+    "lodash": "4.17.15",
+    "prettier": "^1.19.1",
+    "prettier-webpack-plugin": "^1.2.0"
   },
   "devDependencies": {
     "clean-webpack-plugin": "3.0.0",

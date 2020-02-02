@@ -1,13 +1,13 @@
 #button {
-  background:  transparent;
+  background: transparent;
   border: none;
-  bottom:  30px;
-  cursor:  pointer;
+  bottom: 30px;
+  cursor: pointer;
   fill: $primary;
-  left:  50%;
-  outline:  0;
-  position:  absolute;
-  transition:  all 0.2s;
+  left: 50%;
+  outline: 0;
+  position: absolute;
+  transition: all 0.2s;
   width: 100px;
 
   transform: translateX(-50%);
@@ -30,9 +30,10 @@
     }
   }
 
-  #face, #hair {
+  #face,
+  #hair {
     fill: $primary;
-    transition:  all 0.3s;
+    transition: all 0.3s;
   }
 
   &.hover #face {
@@ -53,5 +54,5 @@
 }
 
 // Animations
-@import 'animations/glow';
-@import 'animations/shake';
+@import "animations/glow";
+@import "animations/shake";

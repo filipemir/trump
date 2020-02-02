@@ -3,17 +3,23 @@
     fill: $primary;
   }
 
-  40%, 50%, 65% {
+  40%,
+  50%,
+  65% {
     fill: $orange;
   }
 }
 
 @-webkit-keyframes glow {
-  0%, 20%, 40%, 50% {
+  0%,
+  20%,
+  40%,
+  50% {
     fill: $orange;
   }
 
-  0%, 100% {
+  0%,
+  100% {
     fill: $primary;
   }
 }

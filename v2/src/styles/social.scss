@@ -10,7 +10,7 @@
 
   .social-icon {
     fill: $primary;
-    cursor:  pointer;
+    cursor: pointer;
     height: 30px;
     margin: 30px 0px;
     transition: all 0.2s;
@@ -34,4 +34,4 @@
   }
 }
 
-@import 'animations/bounce-in-up'
+@import "animations/bounce-in-up";

@@ -3,9 +3,9 @@
 
   #text {
     color: $primary;
-    cursor:  pointer;
+    cursor: pointer;
     letter-spacing: -4px;
-    line-height: 0.90;
+    line-height: 0.9;
     text-align: center;
     text-transform: uppercase;
 
@@ -14,7 +14,7 @@
     left: 50%;
     position: absolute;
     width: 70%;
-    max-width:  1000px;
+    max-width: 1000px;
 
     // Center the text
     transform: translateY(-50%) translateX(-50%);
@@ -26,10 +26,11 @@
     // Distinction results from not wanting emojis to be italicized and shadowed.
     span {
       margin-right: 10px;
-      margin-left:  10px;
-      display:  inline-block;
+      margin-left: 10px;
+      display: inline-block;
       // transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s, -moz-transform 1s, -o-transform 1s;
-      transition: text-shadow 0.2s, opacity 1s, transform 1s, -webkit-transform 1s;
+      transition: text-shadow 0.2s, opacity 1s, transform 1s,
+        -webkit-transform 1s;
     }
 
     .word {

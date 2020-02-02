@@ -4,7 +4,8 @@ const path = require('path'),
     postcssPresetEnv = require('postcss-preset-env'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
-  CopyPlugin = require('copy-webpack-plugin');
+    CopyPlugin = require('copy-webpack-plugin'),
+    PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -13,10 +14,11 @@ module.exports = {
   output: {
     filename: '[hash].js',
     path: path.resolve(__dirname, 'dist'),
-  },devServer: {
-      writeToDisk: true,
-         contentBase: './dist',
-       },
+  },
+  devServer: {
+    writeToDisk: true,
+    contentBase: './dist',
+  },
   module: {
     rules: [
       { 
@@ -50,6 +52,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new PrettierPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.pug'
     }),
