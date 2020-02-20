@@ -6,7 +6,8 @@ const path = require('path'),
     PrettierPlugin = require("prettier-webpack-plugin"),
     webpack = require("webpack"),
     MinifyPlugin = require("babel-minify-webpack-plugin"),
-    { CleanWebpackPlugin } = require('clean-webpack-plugin');
+    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
+    CopyPlugin = require('copy-webpack-plugin');
 
 require('dotenv').config();
 
@@ -24,7 +25,8 @@ const isDev = !process.env.ENV || process.env.ENV === "development",
     new MiniCssExtractPlugin({
       filename: '[hash].css'
     }),
-    new FaviconsWebpackPlugin('./src/img/face.png')
+    new FaviconsWebpackPlugin('./src/img/face.png'),
+    new CopyPlugin([{ from: 'src/public' }])
   ],
   postCssLoaderPlugins = [postcssPresetEnv()];
 
@@ -89,17 +91,7 @@ module.exports = {
                 name: "[hash].[ext]",
             }
         }
-    },
-    {
-      test: /src\/public\/.*$/,
-      use: {
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-        }
-      }
-    }
-    ]
+    }]
   },
   plugins
 };
