@@ -89,6 +89,15 @@ module.exports = {
                 name: "[hash].[ext]",
             }
         }
+    },
+    {
+      test: /src\/public\/.*$/,
+      use: {
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+        }
+      }
     }
     ]
   },
