@@ -79,10 +79,10 @@ export default class Session {
         /**
          * Ids of quotes in {@link #_quotes}
          *
-         * @type {[string]}
+         * @type {Set<string>}
          * @private
          */
-        this._quoteIds = [];
+        this._unplayedQuoteIds = new Set();
 
         /**
          * Quote currently active
@@ -117,7 +117,7 @@ export default class Session {
         }
 
         this._quotes = quotes;
-        this._quoteIds = Object.keys(quotes);
+        this._resetUnplayedQuotes();
 
         return this;
     }
@@ -200,7 +200,11 @@ export default class Session {
      * @chainable
      */
     _loadQuote(quoteId) {
-        this._presentQuote = quoteId ? this._quotes[quoteId] : this._getRandomQuote();
+        if (this._unplayedQuoteIds.size === 0) {
+            this._resetUnplayedQuotes();
+        }
+
+        this._presentQuote = quoteId ? this._quotes[quoteId] : this._getRandomUnplayedQuote();
         this.social.update(this._presentQuote);
 
         return this;
@@ -212,9 +216,9 @@ export default class Session {
      * @returns {Quote}
      * @private
      */
-    _getRandomQuote() {
-        const keyIndex = Math.floor(Math.random() * Math.floor(this._quoteIds.length)),
-            key = this._quoteIds[keyIndex];
+    _getRandomUnplayedQuote() {
+        const keyIndex = Math.floor(Math.random() * Math.floor(this._unplayedQuoteIds.size)),
+            key = Array.from(this._unplayedQuoteIds)[keyIndex];
 
         return this._quotes[key];
     }
@@ -236,8 +240,19 @@ export default class Session {
         if (presentQuote) {
             presentQuote.play();
             this.visuals.displayTextOnPlay(presentQuote.text);
+            this._unplayedQuoteIds.delete(presentQuote.id);
         }
 
+        return this;
+    }
+
+    /**
+     * Resets {@link #_unplayedQuoteIds} to include all ids in {@link #_quotes}
+     *
+     * @chainable
+     */
+    _resetUnplayedQuotes() {
+        this._unplayedQuoteIds = new Set(Object.keys(this._quotes));
         return this;
     }
 }
