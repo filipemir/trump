@@ -104,8 +104,7 @@ export default class Session {
 
         for (const [id, quote] of Object.entries(QUOTES)) {
             const audioTag = this.pageElements.audio[0],
-                quoteArgs = { ...quote, id, audioTag },
-                newQuote = new Quote(quoteArgs);
+                newQuote = new Quote({ ...quote, id, audioTag });
 
             quotes.push(newQuote);
         }
