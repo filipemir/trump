@@ -102,13 +102,13 @@ export default class Session {
     loadQuotes(num = this._quoteStashSize) {
         const quotes = this._quoteStash ? this._quoteStash : [];
 
-        QUOTES.forEach(q => {
+        for (const [id, quote] of Object.entries(QUOTES)) {
             const audioTag = this.pageElements.audio[0],
-                quoteArgs = { ...q, audioTag },
+                quoteArgs = { ...quote, id, audioTag },
                 newQuote = new Quote(quoteArgs);
 
             quotes.push(newQuote);
-        });
+        }
 
         this._quoteStash = quotes;
 

@@ -10,7 +10,7 @@ project. See it live at [the-best-words.com](http://www.the-best-words.com).
 ## Development
 
 ```bash
-yarn i
+yarn
 yarn start
 ```
 
