@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/filipemir/trump#readme",
   "dependencies": {
-    "jquery": "3.5.0"
+    "jquery": "3.5.0",
+    "query-string": "^6.13.1"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",

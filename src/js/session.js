@@ -1,12 +1,9 @@
 import $ from 'jquery';
+import qs from 'query-string';
 import loadGoogleAnalytics from './ga';
 import Quote from './quote';
 import Social from './social';
 import VisualEffects from './visual-effects';
-
-/**
- * @typedef {array}
- */
 import QUOTES from '../quotes';
 
 export default class Session {
@@ -134,7 +131,7 @@ export default class Session {
         let quoteId;
 
         if (this._round === 1) {
-            quoteId = 'best_words';
+            quoteId = this._getFirstQuoteId();
             this._firstQuoteSetup();
         }
 
@@ -240,6 +237,7 @@ export default class Session {
         if (presentQuote) {
             presentQuote.play();
             this.visuals.displayTextOnPlay(presentQuote.text);
+            this._updateUrl();
             this._unplayedQuoteIds.delete(presentQuote.id);
         }
 
@@ -254,5 +252,27 @@ export default class Session {
     _resetUnplayedQuotes() {
         this._unplayedQuoteIds = new Set(Object.keys(this._quotes));
         return this;
+    }
+
+    /**
+     * Updates URl to include the present quote id's in the query params
+     *
+     * @chainable
+     */
+    _updateUrl() {
+        const { pathname } = window.document.location,
+            { id } = this._presentQuote,
+            existingParams = qs.parse(window.location.search),
+            newParams = { ...existingParams, q: id };
+        history.pushState(undefined, document.title, `${pathname}?${qs.stringify(newParams)}`);
+        return this;
+    }
+
+    _getFirstQuoteId() {
+        const queryParams = qs.parse(window.location.search),
+            requestedQuoteId = queryParams['q'],
+            requestedQuoteExists = requestedQuoteId && !!Object.keys(this._quotes)[requestedQuoteId];
+
+        return requestedQuoteExists ? requestedQuoteId : 'best_words';
     }
 }
