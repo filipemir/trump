@@ -1,12 +1,9 @@
 import $ from 'jquery';
+import qs from 'query-string';
 import loadGoogleAnalytics from './ga';
 import Quote from './quote';
 import Social from './social';
 import VisualEffects from './visual-effects';
-
-/**
- * @typedef {array}
- */
 import QUOTES from '../quotes';
 
 export default class Session {
@@ -69,12 +66,20 @@ export default class Session {
         this.visuals = null;
 
         /**
-         * Stash of quote objects created from
+         * Quote objects created from static data
          *
          * @private
-         * @property {Array}
+         * @property {{ [string]: Quote }}
          */
-        this._quoteStash = [];
+        this._quotes = {};
+
+        /**
+         * Ids of quotes in {@link #_quotes}
+         *
+         * @type {Set<string>}
+         * @private
+         */
+        this._unplayedQuoteIds = new Set();
 
         /**
          * Quote currently active
@@ -85,7 +90,7 @@ export default class Session {
         this._presentQuote = null;
 
         /**
-         * Number of rpesent round (i.e. how many quotes have been loaded)
+         * Number of present round (i.e. how many quotes have been loaded)
          *
          * @private
          * @property {Number}
@@ -94,23 +99,22 @@ export default class Session {
     }
 
     /**
-     * Makes an ajax request for the number of quotes specified
+     * Loads all the quotes into memory
      *
-     * @param {Integer} num
      * @chainable
      */
-    loadQuotes(num = this._quoteStashSize) {
-        const quotes = this._quoteStash ? this._quoteStash : [];
+    loadQuotes() {
+        const quotes = this._quotes ? this._quotes : [];
 
-        QUOTES.forEach(q => {
+        for (const [id, quote] of Object.entries(QUOTES)) {
             const audioTag = this.pageElements.audio[0],
-                quoteArgs = { ...q, audioTag },
-                newQuote = new Quote(quoteArgs);
+                newQuote = new Quote({ ...quote, id, audioTag });
 
-            quotes.push(newQuote);
-        });
+            quotes[id] = newQuote;
+        }
 
-        this._quoteStash = quotes;
+        this._quotes = quotes;
+        this._resetUnplayedQuotes();
 
         return this;
     }
@@ -124,13 +128,15 @@ export default class Session {
      */
     newQuote() {
         this._round++;
+        let quoteId;
 
         if (this._round === 1) {
+            quoteId = this._getFirstQuoteId();
             this._firstQuoteSetup();
         }
 
         this.visuals.glowFaceTillPlay();
-        this._playQuote();
+        this._playQuote(quoteId);
 
         return this;
     }
@@ -187,27 +193,43 @@ export default class Session {
      * Loads a quote from the quote stash to present quote and makes a
      * request for a new quote to add to the stash
      *
+     * @param [quoteId] {string}
      * @chainable
      */
-    _loadQuote() {
-        if (this._quoteStash && this._quoteStash.length > 0) {
-            const i = Math.floor(Math.random() * Math.floor(this._quoteStash.length));
-            this._presentQuote = this._quoteStash[i];
-            this.social.update(this._presentQuote);
+    _loadQuote(quoteId) {
+        if (this._unplayedQuoteIds.size === 0) {
+            this._resetUnplayedQuotes();
         }
 
+        this._presentQuote = quoteId ? this._quotes[quoteId] : this._getRandomUnplayedQuote();
+        this.social.update(this._presentQuote);
+
         return this;
+    }
+
+    /**
+     * Returns a random quote object
+     *
+     * @returns {Quote}
+     * @private
+     */
+    _getRandomUnplayedQuote() {
+        const keyIndex = Math.floor(Math.random() * Math.floor(this._unplayedQuoteIds.size)),
+            key = Array.from(this._unplayedQuoteIds)[keyIndex];
+
+        return this._quotes[key];
     }
 
     /**
      * Plays present quote from the quote stash, if it hasn't been played,
      * or loads and plays a new one if it has.
      *
+     * @param [quoteId] {string}
      * @chainable
      */
-    _playQuote() {
+    _playQuote(quoteId) {
         if (!this._presentQuote || this._presentQuote.played) {
-            this._loadQuote();
+            this._loadQuote(quoteId);
         }
 
         const presentQuote = this._presentQuote;
@@ -215,8 +237,42 @@ export default class Session {
         if (presentQuote) {
             presentQuote.play();
             this.visuals.displayTextOnPlay(presentQuote.text);
+            this._updateUrl();
+            this._unplayedQuoteIds.delete(presentQuote.id);
         }
 
         return this;
+    }
+
+    /**
+     * Resets {@link #_unplayedQuoteIds} to include all ids in {@link #_quotes}
+     *
+     * @chainable
+     */
+    _resetUnplayedQuotes() {
+        this._unplayedQuoteIds = new Set(Object.keys(this._quotes));
+        return this;
+    }
+
+    /**
+     * Updates URl to include the present quote id's in the query params
+     *
+     * @chainable
+     */
+    _updateUrl() {
+        const { pathname } = window.document.location,
+            { id } = this._presentQuote,
+            existingParams = qs.parse(window.location.search),
+            newParams = { ...existingParams, q: id };
+        history.pushState(undefined, document.title, `${pathname}?${qs.stringify(newParams)}`);
+        return this;
+    }
+
+    _getFirstQuoteId() {
+        const queryParams = qs.parse(window.location.search),
+            requestedQuoteId = queryParams['q'],
+            requestedQuoteExists = requestedQuoteId && this._quotes[requestedQuoteId];
+
+        return requestedQuoteExists ? requestedQuoteId : 'best_words';
     }
 }
