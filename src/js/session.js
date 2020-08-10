@@ -271,7 +271,7 @@ export default class Session {
     _getFirstQuoteId() {
         const queryParams = qs.parse(window.location.search),
             requestedQuoteId = queryParams['q'],
-            requestedQuoteExists = requestedQuoteId && !!Object.keys(this._quotes)[requestedQuoteId];
+            requestedQuoteExists = requestedQuoteId && this._quotes[requestedQuoteId];
 
         return requestedQuoteExists ? requestedQuoteId : 'best_words';
     }
