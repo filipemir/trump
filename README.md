@@ -30,4 +30,5 @@ To use it you'll need to have installed:
 * ffmpeg: `brew install ffmpeg`
 * ffmpeg-normalize: `pip3 install ffmpeg-normalize`
 
-Then just run `./normalize-audio.sh`
+Then just run `./normalize-audio.sh file_name.mp3` from the project root. To normalize all audio files, you can also
+use globbing: `./normalize-audio.sh "*.mp3"`

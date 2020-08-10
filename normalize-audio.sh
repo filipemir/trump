@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ffmpeg-normalize src/audio/*.mp3 \
+ffmpeg-normalize src/audio/$1 \
   --extension mp3 \
   --output-folder src/audio \
   --force \
