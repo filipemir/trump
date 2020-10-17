@@ -537,7 +537,7 @@ export default {
             'And I was a good student. \n I understand things. \n I comprehend very well, ok? \n Better than, I think, almost anybody.',
         date: '2/8/17',
         location: 'Washington, DC',
-        sourceUrl: 'https://www.youtube.com/watch?v=u3zKEoTbwU8&t=485s'
+        sourceUrl: 'https://www.youtube.com/watch?v=LqN5hip3Hgw&t=1695s'
     },
     like_a_smart_person: {
         audio: like_a_smart_person,
