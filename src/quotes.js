@@ -66,6 +66,8 @@ import better_than_anybody from './audio/better_than_anybody.mp3';
 import like_a_smart_person from './audio/like_a_smart_person.mp3';
 import like_a_smart_person_v2 from './audio/like_a_smart_person_v2.mp3';
 import mitts_knees from './audio/mitts_knees.mp3';
+import uv from './audio/uv.mp3';
+import disinfectant from './audio/disinfectant.mp3';
 
 export default {
     best_words: {
@@ -560,5 +562,21 @@ export default {
         date: '5/3/17',
         location: 'Maine',
         sourceUrl: 'https://youtu.be/ocnAl8u7xVM?t=50s'
+    },
+    uv: {
+        audio: uv,
+        text:
+            'We hit the body with a tremendous ... ultraviolet or just a very powerful light and then supposing we brought the light inside the body ...',
+        date: '4/23/20',
+        location: 'White House',
+        sourceUrl: 'https://www.youtube.com/watch?v=33QdTOyXz3w'
+    },
+    disinfectant: {
+        audio: disinfectant,
+        text:
+            'And then I see the disinfectant where it knocks it out in a minute ... Is there a way we can do something like that by injection inside',
+        date: '4/23/20',
+        location: 'White House',
+        sourceUrl: 'https://youtu.be/33QdTOyXz3w?t=25'
     }
 };
