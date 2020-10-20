@@ -69,6 +69,8 @@ import mitts_knees from './audio/mitts_knees.mp3';
 import uv from './audio/uv.mp3';
 import disinfectant from './audio/disinfectant.mp3';
 import canada from './audio/canada.mp3';
+import stable from './audio/stable.mp3';
+import stable2 from './audio/stable2.mp3';
 
 export default {
     best_words: {
@@ -586,5 +588,19 @@ export default {
         date: '4/23/20',
         location: 'White House',
         sourceUrl: 'https://youtu.be/tMcmAEwy90c?t=441'
+    },
+    stable: {
+        audio: stable,
+        text: "I'm a very stable genius",
+        date: '07/12/18',
+        location: 'Brussels',
+        sourceUrl: 'https://youtu.be/yJm-uqbNUqQ?t=66'
+    },
+    stable2: {
+        audio: stable2,
+        text: "There are those that think that I'm a very stable genius",
+        date: '10/2/19',
+        location: 'White House',
+        sourceUrl: 'https://youtu.be/tMcmAEwy90c?t=564'
     }
 };
