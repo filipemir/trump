@@ -68,6 +68,7 @@ import like_a_smart_person_v2 from './audio/like_a_smart_person_v2.mp3';
 import mitts_knees from './audio/mitts_knees.mp3';
 import uv from './audio/uv.mp3';
 import disinfectant from './audio/disinfectant.mp3';
+import canada from './audio/canada.mp3';
 
 export default {
     best_words: {
@@ -578,5 +579,12 @@ export default {
         date: '4/23/20',
         location: 'White House',
         sourceUrl: 'https://youtu.be/33QdTOyXz3w?t=25'
+    },
+    canada: {
+        audio: canada,
+        text: "I think 🇨🇦 is happy but they're not happy like we're happy but they're happy",
+        date: '4/23/20',
+        location: 'White House',
+        sourceUrl: 'https://youtu.be/tMcmAEwy90c?t=441'
     }
 };
