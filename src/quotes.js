@@ -606,9 +606,9 @@ export default {
     },
     helicopters: {
         audio: helicopters,
-        text: "I understand helicopters very well",
+        text: 'I understand helicopters very well',
         date: '9/7/20',
         location: 'White House',
-        sourceUrl: 'https://youtu.be/tMcmAEwy90c?t=564'
+        sourceUrl: 'https://youtu.be/zddirtktOgA?t=1188'
     }
 };
