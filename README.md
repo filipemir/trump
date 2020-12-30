@@ -5,7 +5,7 @@
 # The Best Words
 A small sampling of Donald Trump's best words. Heavily inspired by (and indebted to)
 the now defunct [They Don't Want You To Win](http://www.theydontwantyouto.win), a far funnier and less depressing
-project. See it live at [the-best-words.now.sh](http://www.the-best-words.now.sh).
+project. See it live at [the-best-words.now.sh](https://the-best-words.now.sh).
 
 ## Development
 
